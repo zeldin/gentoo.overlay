@@ -1,0 +1,11 @@
+--- xjdfrontend.c.orig	2012-11-25 17:32:41.037761430 +0100
++++ xjdfrontend.c	2012-11-25 17:35:36.676641419 +0100
+@@ -246,7 +246,7 @@
+     ioctl(0, TCGETA, &orig); ioctl(0, TCGETA, &new);
+     new.c_lflag &= ~ICANON; new.c_lflag &= ~ISIG; new.c_lflag &= ~ECHO;
+     new.c_lflag &= ~IXON;
+-    new.c_cc[4] = 1; new.c_cc[5] = 0;   ioctl(0, TCSETA, &new);
++    new.c_cc[VMIN] = 1; new.c_cc[VTIME] = 0;   ioctl(0, TCSETA, &new);
+ #endif
+     myi_status=IOCTL_RAW;
+   }

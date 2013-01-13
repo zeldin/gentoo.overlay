@@ -1,0 +1,188 @@
+diff -Naur xjdic.orig/exjdxgen.c xjdic/exjdxgen.c
+--- xjdic.orig/exjdxgen.c	1998-05-24 17:43:37.000000000 +0200
++++ xjdic/exjdxgen.c	2011-08-17 22:18:13.579459627 +0200
+@@ -22,7 +22,7 @@
+ #include <sys/stat.h>
+ 
+ #include <stdio.h>
+-/*#include <stdlib.h>*/
++#include <stdlib.h>
+ #include <ctype.h>
+ #include <string.h>
+ #include "xjdic.h"
+diff -Naur xjdic.orig/Makefile xjdic/Makefile
+--- xjdic.orig/Makefile	2003-05-28 08:15:43.000000000 +0200
++++ xjdic/Makefile	2011-08-17 22:17:48.214384063 +0200
+@@ -54,7 +54,8 @@
+ #
+ #LIBS= -lsocket -lnsl
+ #
+-CC=gcc -g
++#CC=gcc -g
++CC=gcc
+ all: xjdic_sa xjdic_cl xjdserver xjdxgen exjdxgen
+ client: xjdic_cl
+ server: xjdserver
+diff -Naur xjdic.orig/xjdclient.c xjdic/xjdclient.c
+--- xjdic.orig/xjdclient.c	1998-08-31 12:56:56.000000000 +0200
++++ xjdic/xjdclient.c	2011-08-17 22:26:09.355699861 +0200
+@@ -36,13 +36,13 @@
+ #include <stdlib.h>
+ #include <unistd.h>
+ #include <signal.h>
++#include <errno.h>
+ #include "xjdic.h"
+ 
+ #define CVERBOSE 0
+ int chk_cnt=0;
+-extern int errno;
+ unsigned char host[51] = {"localhost"};
+-unsigned char yn[2];
++unsigned char yesno[2];
+ unsigned int portno = XJ_PORTNO;
+ char protocol[4] = {"udp"};
+ int s, elapse;
+@@ -154,7 +154,7 @@
+ {
+ 	long temp;
+ 	int i;
+-	char yn[5];
++	char yesno[5];
+ 
+ 	if (CVERBOSE) printf("PDU: %d %d %d %d %d %d %s %d\n",
+ 	       ntohs(pdu_in.xjdrsp_type),
+@@ -178,13 +178,13 @@
+ 		chk_cnt = 0;
+ 		return (TRUE);
+ 	}
+-	if (CVERBOSE) printf("Cal checksum: %d PDU checksum: %d\n",temp,ntohl(pdu_in.xjdrsp_checksum));
++	if (CVERBOSE) printf("Cal checksum: %ld PDU checksum: %d\n",temp,ntohl(pdu_in.xjdrsp_checksum));
+ 	if (chk_cnt++ > 20)
+ 	{
+ 		printf("20 consecutive checksum failures: Try again? ");
+-		scanf("%s",&yn);
++		scanf("%s",&yesno[0]);
+ 		printf("\n");
+-		if((yn[0] | 0x20) == 'y') 
++		if((yesno[0] | 0x20) == 'y') 
+ 		{
+ 			chk_cnt = 0;
+ 			return(FALSE);
+@@ -260,9 +260,9 @@
+ 				{
+ 					rep_count = 0;
+ 					printf("Cannot contact Server: %s Try again? ",host);
+-					scanf("%s",&yn);
++					scanf("%s",&yesno[0]);
+ 					printf("\n");
+-					if((yn[0] | 0x20) == 'y') 
++					if((yesno[0] | 0x20) == 'y') 
+ 					{
+ 						curr_timer = TINITVAL;
+ 						continue; 
+@@ -298,8 +298,8 @@
+ 			if (errno == 111)
+ 			{
+ 				printf("Cannot contact Server: %s Try again?\n",host);
+-				scanf("%s",&yn);
+-				if((yn[0] | 0x20) == 'y') 
++				scanf("%s",&yesno[0]);
++				if((yesno[0] | 0x20) == 'y') 
+ 				{
+ 					continue; 
+ 				}
+@@ -322,7 +322,7 @@
+ 			sendit = FALSE;
+ 			continue;
+ 		}
+-		if (CVERBOSE) printf("Valid PDU: %d %ld %d %d\n",ntohs(pdu_in.xjdrsp_type),
++		if (CVERBOSE) printf("Valid PDU: %d %d %d %d\n",ntohs(pdu_in.xjdrsp_type),
+ 							ntohl(pdu_in.xjdrsp_resindex),
+ 							ntohs(pdu_in.xjdrsp_hitposn),
+ 							ntohs(pdu_in.xjdrsp_reslen));
+diff -Naur xjdic.orig/xjdfrontend.c xjdic/xjdfrontend.c
+--- xjdic.orig/xjdfrontend.c	2003-05-28 09:14:29.000000000 +0200
++++ xjdic/xjdfrontend.c	2011-08-17 22:21:10.622994014 +0200
+@@ -26,6 +26,7 @@
+ #include <stdlib.h>
+ #include <signal.h>
+ #include <errno.h>
++#include <unistd.h>
+ #include "xjdic.h"
+ 
+ /*    Paul Burchard supplied a patch to provide BSD compatibility for xjdic
+@@ -894,7 +895,7 @@
+ 		fread(ejdxtest,sizeof(long),1,fex);
+ 		if (ejdxtest[0] != (extlen+jiver))
+ 		{
+-			printf("\nEDICT Extension file & Index Mismatch! %ld %ld\n",ejdxtest[0],extlen+jiver);
++			printf("\nEDICT Extension file & Index Mismatch! %d %d\n",ejdxtest[0],extlen+jiver);
+ 			exit(1);
+ 		}
+ 	}
+@@ -2115,7 +2116,7 @@
+ 			}
+ 		}
+ 		NoSets++;
+-		printf(" (%d) ",strlen(RKSet[NoSets-1])/2);
++		printf(" (%ld) ",strlen(RKSet[NoSets-1])/2);
+ 	}
+ 	printf("\n");
+ }
+diff -Naur xjdic.orig/xjdic.h xjdic/xjdic.h
+--- xjdic.orig/xjdic.h	2003-12-24 04:27:00.000000000 +0100
++++ xjdic/xjdic.h	2011-08-18 12:27:58.454831905 +0200
+@@ -3,7 +3,7 @@
+ #define NRKANA 250*2   /*  size of the romaji to kana tables*/
+ #define NOFILT 10      /* maximum number of general filters */
+ #define VMAX 600       /* maximum entries in the verb table */
+-#define DEFAULT_DICDIR ""    /* could be: "/usr/local/lib/xjdic"   */
++#define DEFAULT_DICDIR "/usr/share/xjdic"    /* could be: "/usr/local/lib/xjdic"   */
+ #define NOHITS 1000       /* size of hittab  */
+ #define SPTAG '@'         /* character that flags priority entries */
+ #define KFBUFFSIZE 2000   /* size of the KFlush buffer */
+diff -Naur xjdic.orig/xjdserver.c xjdic/xjdserver.c
+--- xjdic.orig/xjdserver.c	2003-05-28 07:58:02.000000000 +0200
++++ xjdic/xjdserver.c	2011-08-17 22:28:11.008869614 +0200
+@@ -28,6 +28,8 @@
+ #include <netdb.h>
+ #include <stdlib.h>
+ #include <signal.h>
++#include <errno.h>
++#include <unistd.h>
+ #include "xjdic.h"
+ 
+ #define SVERBOSE 0
+@@ -56,8 +58,6 @@
+ int thisdic = 0;
+ int DicNum;
+ 
+-extern int errno;
+-
+ extern unsigned char Dnamet[10][100],XJDXnamet[10][100];
+ extern unsigned char *dicbufft[10];
+ extern unsigned long diclent[10], indlent[10],indptrt[10];
+@@ -123,7 +123,7 @@
+ 	for (i = 0; i < strlen(pdu_out.xjdrsp_resstr); i++)
+ 		temp+= pdu_out.xjdrsp_resstr[i];
+ 	pdu_out.xjdrsp_checksum = htonl(temp);
+-	if (SVERBOSE) printf("PDU sent: %d %d %d %d %d %d %s %d\n",
++	if (SVERBOSE) printf("PDU sent: %d %d %d %d %d %d %s %ld\n",
+ 			ntohs(pdu_out.xjdrsp_type),
+ 			ntohs(pdu_out.xjdrsp_seq),
+ 			ntohl(pdu_out.xjdrsp_resindex),
+diff -Naur xjdic.orig/xjdxgen.c xjdic/xjdxgen.c
+--- xjdic.orig/xjdxgen.c	2003-05-28 07:58:29.000000000 +0200
++++ xjdic/xjdxgen.c	2011-08-17 22:28:36.917971749 +0200
+@@ -23,9 +23,10 @@
+ #include <sys/stat.h>
+ 
+ #include <stdio.h>
+-/*#include <stdlib.h>*/
++#include <stdlib.h>
+ #include <ctype.h>
+ #include <string.h>
++#include <unistd.h>
+ #include "xjdic.h"
+ 
+ #define TRUE 1
