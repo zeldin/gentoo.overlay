@@ -11,6 +11,6 @@
     </owner>
     <source type="git">git://github.com/zeldin/gentoo.overlay.git</source>
     <source type="git">http://github.com/zeldin/gentoo.overlay.git</source>
-    <feed>http://github.com/feeds/zeldin/commits/gentoo.overlay/master</feed>
+    <feed>http://github.com/zeldin/gentoo.overlay/commits/master.atom</feed>
   </repo>
 </repositories>
