@@ -1,0 +1,11 @@
+diff --git a/cmake/src/uslscore/CMakeLists.txt b/cmake/src/uslscore/CMakeLists.txt
+index 1081b1d..0deece3 100644
+--- a/cmake/src/uslscore/CMakeLists.txt
++++ b/cmake/src/uslscore/CMakeLists.txt
+@@ -183,5 +183,5 @@ target_link_libraries(uslscore
+     whirlpool
+     crypto
+     rt
+-    luajit-5.1
++    luajit-2.0
+ )

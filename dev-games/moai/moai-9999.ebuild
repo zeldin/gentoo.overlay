@@ -6,8 +6,11 @@ EAPI=4
 
 inherit cmake-utils git-2
 
+IUSE="examples luajit"
+
 EGIT_REPO_URI="git://github.com/spacepluk/moai-dev"
 EGIT_BRANCH="linux-cmake"
+use luajit && EGIT_BRANCH="linux-luajit"
 
 KEYWORDS="~ppc"
 
@@ -16,11 +19,13 @@ HOMEPAGE="http://getmoai.com/"
 
 LICENSE="CPAL-1.0"
 SLOT="0"
-IUSE="examples"
+
+use luajit && PATCHES=( "${FILESDIR}"/luajit-library-version.patch )
 
 CMAKE_USE_DIR="${S}/cmake"
 
-RDEPEND=">=dev-lang/lua-5.1.3
+RDEPEND="!luajit? ( >=dev-lang/lua-5.1.3 )
+	luajit? ( dev-lang/luajit:2 )
 	>=dev-libs/jansson-2.1
 	>=dev-libs/openssl-1.0.0d
 	dev-libs/tinyxml
