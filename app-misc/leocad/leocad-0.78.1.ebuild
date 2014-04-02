@@ -30,7 +30,8 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 PATCHES=( "${FILESDIR}"/${P}-bigendian.patch
-	"${FILESDIR}"/${P}-infotype.patch )
+	"${FILESDIR}"/${P}-infotype.patch
+	"${FILESDIR}"/${P}-libs.patch )
 
 src_configure() {
         make PREFIX=/usr config || die
