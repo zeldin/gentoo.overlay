@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libcapsimage
+Description: Library for decoding IPF format floppy disk images
+URL: http://forum.kryoflux.com
+Version: @VERSION@
+Libs: -L${libdir} -lcapsimage
+Cflags: -I${includedir}/CAPSImg
