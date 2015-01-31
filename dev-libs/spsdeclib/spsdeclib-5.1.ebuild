@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit eutils unpacker flag-o-matic autotools-multilib
+inherit base eutils unpacker flag-o-matic autotools-multilib
 
 DESCRIPTION="A library to decode IPF files"
 HOMEPAGE="http://www.kryoflux.com/"
@@ -18,6 +18,8 @@ IUSE=""
 DEPEND="app-arch/unzip"
 RDEPEND=""
 
+PATCHES=( "${FILESDIR}"/${P}-intel.patch )
+
 S="${WORKDIR}/capsimg_source_linux_macosx"
 
 append-ldflags -static-libgcc -static-libstdc++
@@ -28,6 +30,7 @@ src_unpack() {
 }
 
 src_prepare() {
+	base_src_prepare
 	chmod +x CAPSImg/configure
 	multilib_copy_sources
 }

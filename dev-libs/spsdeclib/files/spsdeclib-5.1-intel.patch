@@ -1,0 +1,15 @@
+diff --git a/CAPSImg/stdafx.h b/CAPSImg/stdafx.h
+index 900b3dc..f991d97 100644
+--- a/CAPSImg/stdafx.h
++++ b/CAPSImg/stdafx.h
+@@ -45,7 +45,10 @@ typedef const char *LPCTSTR;
+ //-- Linux changes
+ 
+ 
++#if !defined(WORDS_BIGENDIAN) && !defined(__BIG_ENDIAN__)
+ #define INTEL
++#endif /* !defined(WORDS_BIGENDIAN) && !defined(__BIG_ENDIAN__) */
++
+ #define MAX_FILENAMELEN (MAX_PATH*2)
+ 
+ // external definitions
