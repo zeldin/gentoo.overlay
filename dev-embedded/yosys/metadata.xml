@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+        <herd>no-herd</herd>
+        <maintainer>
+                <email>marcus@mc.pp.se</email>
+                <name>Marcus Comstedt</name>
+        </maintainer>
+        <use>
+                <flag name="clang">Build with clang instead of gcc</flag>
+                <flag name="plugins">Enable support for plugins</flag>
+                <flag name="abc">Build and install ABC</flag>
+        </use>
+</pkgmetadata>
