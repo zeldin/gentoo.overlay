@@ -18,5 +18,5 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}/usr" install
+	emake ICEBOX="/usr/share/icebox" DESTDIR="${D}/usr" install
 }
