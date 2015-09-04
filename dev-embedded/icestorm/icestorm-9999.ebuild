@@ -1,6 +1,6 @@
 EAPI=5
 
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python3_{3,4} )
 
 inherit eutils python-single-r1
 
@@ -12,6 +12,7 @@ KEYWORDS=""
 SLOT="0"
 IUSE=""
 
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 RDEPEND="${PYTHON_DEPS} dev-embedded/libftdi"
 DEPEND="$RDEPEND"
 
