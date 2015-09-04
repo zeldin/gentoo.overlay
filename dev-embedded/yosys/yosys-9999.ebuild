@@ -15,7 +15,7 @@ fi
 
 LICENSE="ISC"
 SLOT="0"
-IUSE="tcl abc plugins readline clang"
+IUSE="tcl +abc plugins readline clang"
 
 RDEPEND="tcl? ( dev-lang/tcl )
 	 plugins? ( virtual/libffi virtual/pkgconfig )
