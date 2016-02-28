@@ -39,9 +39,9 @@ src_configure() {
 }
 
 src_compile() {
-	emake DESTDIR="/usr" || die "emake failed"
+	emake PREFIX="/usr" || die "emake failed"
 }
 
 src_install() {
-	emake DESTDIR="${D}/usr" install
+	emake PREFIX="/usr" DESTDIR="${D}" install
 }

@@ -16,7 +16,10 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 RDEPEND="${PYTHON_DEPS} dev-embedded/libftdi"
 DEPEND="$RDEPEND"
 
+src_compile() {
+	emake PREFIX="/usr" || die "emake failed"
+}
+
 src_install() {
-	dodir /usr/bin
-	emake DESTDIR="${D}/usr" install
+	emake PREFIX="/usr" DESTDIR="${D}" install
 }
