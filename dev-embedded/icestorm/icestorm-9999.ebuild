@@ -17,9 +17,9 @@ RDEPEND="${PYTHON_DEPS} dev-embedded/libftdi"
 DEPEND="$RDEPEND"
 
 src_compile() {
-	emake PREFIX="/usr" || die "emake failed"
+	emake PREFIX="/usr" CC="$(tc-getCC)" CXX="$(tc-getCXX)" || die "emake failed"
 }
 
 src_install() {
-	emake PREFIX="/usr" DESTDIR="${D}" install
+	emake PREFIX="/usr" CC="$(tc-getCC)" CXX="$(tc-getCXX)" DESTDIR="${D}" install
 }
