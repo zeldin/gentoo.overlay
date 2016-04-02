@@ -1,11 +1,14 @@
 EAPI=4
 
+inherit versionator
+
 DESCRIPTION="NVIDIA Jetson TX1 firmware package"
 HOMEPAGE="https://developer.nvidia.com/embedded/linux-tegra"
-SRC_URI="http://developer.nvidia.com/embedded/dlc/l4t-jetson-tx1-driver-package-${PV//./-} -> l4t-jetson-tx1-driver-package-${PV}.tar.bz2"
+MY_P="Tegra210_Linux_R${PV}"
+SRC_URI="http://developer.download.nvidia.com/embedded/L4T/r$(get_major_version)_Release_v$(get_after_major_version)/${MY_P}_armhf.tbz2"
 
 SLOT="0"
-KEYWORDS="arm arm64"
+KEYWORDS="-* arm arm64"
 IUSE=""
 
 S="${WORKDIR}/Linux_for_Tegra/nv_tegra"
