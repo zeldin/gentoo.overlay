@@ -1,0 +1,22 @@
+diff --git a/src/utilities/find_font_file.cc b/src/utilities/find_font_file.cc
+index 9d634cc..58c9130 100644
+--- a/src/utilities/find_font_file.cc
++++ b/src/utilities/find_font_file.cc
+@@ -41,7 +41,8 @@ const char* western_platform_fonts[] = {
+     // I would prefer Helvetica except that it is stored as a dfont. :(
+     "/Library/Fonts/Arial.ttf",
+ #else
+-    "/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf",
++    //"/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf",
++    "/usr/share/fonts/dejavu/DejaVuSans.ttf",
+ #endif
+     NULL};
+ 
+@@ -55,6 +56,7 @@ const char* ja_platform_fonts[] = {
+ #else
+     // We should prefer fonts that we've verified work over whatever the default
+     // system font is.
++    "/usr/share/fonts/monafont/mona.ttf",
+     "/usr/share/fonts/truetype/mona/mona.ttf",
+     "/usr/share/fonts/truetype/sazanami/sazanami-gothic.ttf",
+     "/usr/share/fonts/truetype/kochi/kochi-gothic-subst.ttf",
