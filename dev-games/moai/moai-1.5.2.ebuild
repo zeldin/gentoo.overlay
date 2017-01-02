@@ -19,7 +19,7 @@ HOMEPAGE="http://getmoai.com/"
 LICENSE="CPAL-1.0"
 SLOT="0"
 
-PATCHES=("${FILESDIR}"/curl_arm64.patch)
+PATCHES=("${FILESDIR}"/curl-sizeof-long.patch)
 
 CMAKE_USE_DIR="${S}/cmake"
 
