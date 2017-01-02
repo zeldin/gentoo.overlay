@@ -10,17 +10,14 @@ IUSE="examples luajit"
 
 EGIT_REPO_URI="git://github.com/spacepluk/moai-dev"
 EGIT_BRANCH="linux-cmake"
-use luajit && EGIT_BRANCH="linux-luajit"
 
-KEYWORDS="~ppc"
+KEYWORDS=""
 
 DESCRIPTION="Moai is a mobile game development platform."
 HOMEPAGE="http://getmoai.com/"
 
 LICENSE="CPAL-1.0"
 SLOT="0"
-
-use luajit && PATCHES=( "${FILESDIR}"/luajit-library-version.patch )
 
 CMAKE_USE_DIR="${S}/cmake"
 
@@ -43,6 +40,16 @@ RDEPEND="!luajit? ( >=dev-lang/lua-5.1.3 )
 
 DEPEND="${RDEPEND}
 	~dev-games/chipmunk-physics-5.3.4"
+
+src_unpack() {
+	use luajit && EGIT_BRANCH="linux-luajit"
+	git-2_src_unpack
+}
+
+src_prepare() {
+	use luajit && PATCHES=( "${FILESDIR}"/luajit-library-version.patch )
+	cmake-utils_src_prepare
+}
 
 src_install() {
 	dobin "${CMAKE_BUILD_DIR}"/src/hosts/moai-untz || die

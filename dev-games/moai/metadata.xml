@@ -10,5 +10,9 @@
                 <flag name="luajit">Use the lua just-in-time compiler
                 <pkg>dev-lang/luajit</pkg> instead of <pkg>dev-lang/lua</pkg>,
 		which makes moai faster.</flag>
+		<flag name="chipmunk">Enable chipmunk physics engine</flag>
+		<flag name="crypto">Enable crypto support</flag>
+		<flag name="json">Enable JSON support</flag>
+		<flag name="tinyxml">Enable tinyxml support</flag>
         </use>
 </pkgmetadata>

@@ -1,0 +1,13 @@
+diff --git a/3rdparty/curl-7.19.7/include/curl/curlbuild.h b/3rdparty/curl-7.19.7/include/curl/curlbuild.h
+index 115457b..c9151f2 100644
+--- a/3rdparty/curl-7.19.7/include/curl/curlbuild.h
++++ b/3rdparty/curl-7.19.7/include/curl/curlbuild.h
+@@ -537,7 +537,7 @@
+ #    define CURL_SIZEOF_CURL_OFF_T     8
+ #    define CURL_SUFFIX_CURL_OFF_T     LL
+ #    define CURL_SUFFIX_CURL_OFF_TU    ULL
+-#  elif defined(__x86_64__) || defined(__ppc64__)
++#  elif defined(__x86_64__) || defined(__ppc64__) || defined(__aarch64__)
+ #    define CURL_SIZEOF_LONG           8
+ #    define CURL_TYPEOF_CURL_OFF_T     long
+ #    define CURL_FORMAT_CURL_OFF_T     "ld"
