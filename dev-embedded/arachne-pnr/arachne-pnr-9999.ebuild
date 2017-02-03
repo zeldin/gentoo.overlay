@@ -14,9 +14,9 @@ IUSE=""
 DEPEND="dev-embedded/icestorm"
 
 src_compile() {
-	emake ICEBOX="/usr/share/icebox" || die "emake failed"
+	emake PREFIX="/usr" || die "emake failed"
 }
 
 src_install() {
-	emake ICEBOX="/usr/share/icebox" DESTDIR="${D}/usr" install
+	emake PREFIX="/usr" DESTDIR="${D}" install
 }
