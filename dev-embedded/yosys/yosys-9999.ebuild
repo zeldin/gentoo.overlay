@@ -10,7 +10,7 @@ if [[ ${PV} = *9999* ]]; then
 else
 	SRC_URI="https://github.com/cliffordwolf/yosys/archive/${P}.tar.gz"
 	S="${WORKDIR}/${PN}-${P}"
-	KEYWORDS="~ppc"
+	KEYWORDS="~ppc ~arm64"
 fi
 
 LICENSE="ISC"
