@@ -41,6 +41,7 @@ DEPEND="$RDEPEND"
 
 src_prepare() {
       epatch "${FILESDIR}"/fontpath.patch
+      epatch "${FILESDIR}"/iostream.patch
       epatch_user
 }
 

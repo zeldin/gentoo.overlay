@@ -1,0 +1,10 @@
+--- a/src/systems/base/graphics_object.cc	2017-02-18 22:56:41.389040045 +0100
++++ b/src/systems/base/graphics_object.cc	2017-02-18 22:56:57.158181966 +0100
+@@ -40,6 +40,7 @@
+ #include <sstream>
+ #include <string>
+ #include <vector>
++#include <iostream>
+ 
+ #include "systems/base/graphics_object_data.h"
+ #include "systems/base/object_mutator.h"
