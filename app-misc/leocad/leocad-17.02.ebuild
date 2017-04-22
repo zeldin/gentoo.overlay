@@ -4,23 +4,25 @@
 
 EAPI=4
 
-inherit base
+inherit qmake-utils
 
-SRC_URI="http://leocad.googlecode.com/files/${P}-src.tgz \
-	http://leocad.googlecode.com/files/pieces-6152.zip"
+SRC_URI="https://github.com/leozide/${PN}/archive/v${PV}.tar.gz \
+	https://github.com/leozide/${PN}/releases/download/v${PV}/Library-Linux-9781.zip"
 
-KEYWORDS="~ppc"
+KEYWORDS="~ppc ~ppc64"
 
 DESCRIPTION="LeoCAD is a CAD program that can be used to create virtual LEGO models"
 HOMEPAGE="http://www.leocad.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="jpeg png zlib"
+IUSE="+qt4 qt5 jpeg png zlib"
+REQUIRED_USE="^^ ( qt4 qt5 )"
 
-S="${WORKDIR}/${PN}"
+S="${WORKDIR}/${P}"
 
-RDEPEND=">=x11-libs/gtk+-2.0
+RDEPEND="qt4? ( dev-qt/qtcore:4 )
+	qt5? ( dev-qt/qtcore:5 )
 	media-libs/mesa
 	jpeg? ( virtual/jpeg )
 	png? ( media-libs/libpng:0 )
@@ -29,17 +31,14 @@ RDEPEND=">=x11-libs/gtk+-2.0
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
-PATCHES=( "${FILESDIR}"/${P}-bigendian.patch
-	"${FILESDIR}"/${P}-infotype.patch
-	"${FILESDIR}"/${P}-libs.patch )
-
 src_configure() {
-        make PREFIX=/usr config || die
+        use qt4 && eqmake4
+        use qt5 && eqmake5
 }
 
 src_install() {
-	base_src_install
+        emake INSTALL_ROOT="${ED}" install
 
 	insinto /usr/share/leocad
-	doins "${WORKDIR}"/pieces.*
+	doins "${WORKDIR}"/library.bin
 }
