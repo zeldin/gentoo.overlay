@@ -22,6 +22,7 @@ S="${WORKDIR}/Linux_for_Tegra/nv_tegra"
 QA_TEXTRELS_arm64="usr/lib64/tegra/libnvidia-eglcore.so.${PV}
 	usr/lib64/tegra/libnvidia-glcore.so.${PV}
 	usr/lib64/tegra/libcuda.so.1.1
+	usr/lib64/tegra/libGLX_nvidia.so.0
 	usr/lib64/tegra/libGL.so.1"
 
 
