@@ -14,7 +14,7 @@ RDEPEND="
 	>=virtual/jdk-1.7
 	dev-java/swt:4.6
 	dev-java/jssc:0
-	sys-fs/udev"
+	virtual/udev"
 
 src_install() {
 	java-pkg_dojar lib/mojo-loader.jar
