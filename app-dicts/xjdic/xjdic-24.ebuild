@@ -9,6 +9,7 @@ SRC_URI="http://ftp.monash.edu.au/pub/nihongo/xjdic24.tgz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 x86"
+PDEPEND="app-dicts/kanjidic app-dicts/edict"
 
 src_unpack () {
     unpack ${A} || die
