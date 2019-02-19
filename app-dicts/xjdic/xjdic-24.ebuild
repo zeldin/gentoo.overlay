@@ -5,11 +5,7 @@ inherit eutils
 
 DESCRIPTION="Electronic Japanese-English Dictionary Program"
 HOMEPAGE="http://www.csse.monash.edu.au/~jwb/xjdic/"
-SRC_URI="http://ftp.monash.edu.au/pub/nihongo/xjdic24.tgz \
-	http://ftp.monash.edu.au/pub/nihongo/kanjidic.gz \
-	http://ftp.monash.edu.au/pub/nihongo/enamdict.gz \
-	http://ftp.monash.edu.au/pub/nihongo/compdic.gz \
-	http://ftp.monash.edu.au/pub/nihongo/edict.gz"
+SRC_URI="http://ftp.monash.edu.au/pub/nihongo/xjdic24.tgz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 x86"
@@ -23,25 +19,14 @@ src_unpack () {
 
 src_compile () {
     emake || die
-    ./xjdxgen edict || die
-    ./xjdxgen enamdict || die
-    ./xjdxgen compdic || die
-    ./xjdxgen kanjidic || die
 }
 
 src_install () {
     mv xjdic_sa xjdic
     dobin xjdic
+    dobin xjdxgen
     insinto /usr/share/xjdic
-    doins edict \
-	edict.xjdx \
-	enamdict \
-	enamdict.xjdx \
-	compdic \
-	compdic.xjdx \
-	kanjidic \
-	kanjidic.xjdx \
-	kanjstroke \
+    doins kanjstroke \
 	radicals.tm \
 	radkfile \
 	romkana.cnv \

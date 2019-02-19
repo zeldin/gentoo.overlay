@@ -1,0 +1,1 @@
+../edict/edict-9999.ebuild
