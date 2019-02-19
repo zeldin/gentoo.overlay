@@ -18,6 +18,7 @@ src_unpack () {
     unpack ${A} || die
     epatch ${FILESDIR}/${P}.patch || die
     epatch ${FILESDIR}/${P}-termios.patch || die
+    epatch ${FILESDIR}/${PN}-fix-reply-overrun.patch || die
 }
 
 src_compile () {
