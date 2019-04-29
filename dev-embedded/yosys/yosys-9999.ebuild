@@ -20,7 +20,7 @@ IUSE="tcl +abc plugins readline clang"
 RDEPEND="tcl? ( dev-lang/tcl )
 	 plugins? ( virtual/libffi virtual/pkgconfig )
 	 readline? ( sys-libs/readline )"
-DEPEND="abc? ( dev-vcs/mercurial )
+DEPEND="abc? ( dev-vcs/git )
 	clang? ( sys-devel/clang )
 	sys-devel/flex sys-devel/bison sys-devel/make
 	$RDEPEND"
@@ -31,16 +31,14 @@ src_unpack() {
 	else
 		default_src_unpack
 	fi
-	cd ${S} || die
-	local ABCURL=$(sed -ne '/^ABCURL/s/^.*=//p;T;q' < Makefile)
-	local ABCREV=$(sed -ne '/^ABCREV/s/^.*=//p;T;q' < Makefile)
-	if [[ ${PV} == 0.[0-7]* ]]; then
-		hg clone ${ABCURL:-https://bitbucket.org/alanmi/abc} abc || die
-		cd abc && hg update -r ${ABCREV} || die
-	else
+	if use abc; then
+		cd ${S} || die
+		local ABCURL=$(sed -ne '/^ABCURL/s/^.*=//p;T;q' < Makefile)
+		local ABCREV=$(sed -ne '/^ABCREV/s/^.*=//p;T;q' < Makefile)
 		git clone ${ABCURL} abc || die
 		cd abc || die
-		git config --local core.abbrev 7 || die
+		ABCREV=${ABCREV//[[:space:]]}
+		git config --local core.abbrev ${#ABCREV} || die
 		git checkout ${ABCREV} || die
 	fi
 }

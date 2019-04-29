@@ -1,1 +1,1 @@
-yosys-9999.ebuild
+yosys-0.7.ebuild
