@@ -25,6 +25,26 @@ DEPEND="abc? ( dev-vcs/mercurial )
 	sys-devel/flex sys-devel/bison sys-devel/make
 	$RDEPEND"
 
+src_unpack() {
+	if [[ ${PV} = *9999* ]]; then
+		git-2_src_unpack
+	else
+		default_src_unpack
+	fi
+	cd ${S} || die
+	local ABCURL=$(sed -ne '/^ABCURL/s/^.*=//p;T;q' < Makefile)
+	local ABCREV=$(sed -ne '/^ABCREV/s/^.*=//p;T;q' < Makefile)
+	if [[ ${PV} == 0.[0-7]* ]]; then
+		hg clone ${ABCURL:-https://bitbucket.org/alanmi/abc} abc || die
+		cd abc && hg update -r ${ABCREV} || die
+	else
+		git clone ${ABCURL} abc || die
+		cd abc || die
+		git config --local core.abbrev 7 || die
+		git checkout ${ABCREV} || die
+	fi
+}
+
 src_configure() {
 	(
 		echo "CONFIG := `usex clang clang gcc`"
