@@ -1,11 +1,11 @@
 EAPI=6
 
-inherit subversion
+inherit subversion wxwidgets
 
 ESVN_REPO_URI="https://svn.icomp.de/svn/chaco"
 
 SLOT="0"
-KEYWORDS="~ppc64"
+KEYWORDS="~ppc64 ~arm64"
 IUSE=""
 
 DEPEND=">=dev-embedded/cc65-1.7
@@ -13,6 +13,12 @@ DEPEND=">=dev-embedded/cc65-1.7
 	app-arch/zip
 	app-arch/unzip"
 REPEND=""
+
+WX_GTK_VER=3.0
+
+pkg_setup() {
+    setup-wxwidgets
+}
 
 src_prepare() {
     default
