@@ -1,16 +1,53 @@
-From 541ed0762e9390751ca45ccbc341a878a3c9688f Mon Sep 17 00:00:00 2001
+From b508309375e78080f0045578ef9de98c0ad368b8 Mon Sep 17 00:00:00 2001
 From: Marcus Comstedt <marcus@mc.pp.se>
-Date: Tue, 9 Apr 2019 22:35:54 +0200
-Subject: [PATCH 2/2] build: Recognize more 64-bit Linux as "linux64"
+Date: Sat, 18 May 2019 17:17:25 +0200
+Subject: [PATCH] build: Recognize more 64-bit Linux as "linux64"
 
 ---
+ GPL/build.gradle                                  |  4 +++-
+ .../Decompiler/src/decompile/cpp/Makefile         |  2 +-
  .../main/java/ghidra/framework/Architecture.java  |  2 ++
  .../src/main/java/ghidra/framework/Platform.java  | 15 +++++++++++++++
  build.gradle                                      |  4 +++-
- 3 files changed, 20 insertions(+), 1 deletion(-)
+ 5 files changed, 24 insertions(+), 3 deletions(-)
 
+diff --git a/GPL/build.gradle b/GPL/build.gradle
+index 319fb822..b12841e6 100644
+--- a/GPL/build.gradle
++++ b/GPL/build.gradle
+@@ -11,6 +11,8 @@ String getCurrentPlatformName() {
+ 		
+ 	boolean isX86_32 = archName.equals("x86") || archName.equals("i386");
+ 	boolean isX86_64 = archName.equals("x86_64") || archName.equals("amd64");
++	boolean isPPC64 = archName.equals("ppc64") || archName.equals("ppc64le")
++	boolean isAARCH64 = archName.equals("aarch64")
+ 
+ 	if (osName.startsWith("Windows")) {
+ 		if (isX86_32) {
+@@ -21,7 +23,7 @@ String getCurrentPlatformName() {
+ 		}
+ 	}
+ 	else if (osName.startsWith("Linux")) {
+-		if (isX86_64) {
++		if (isX86_64 || isPPC64 || isAARCH64) {
+ 			return 'linux64'
+ 		}
+ 	}
+diff --git a/Ghidra/Features/Decompiler/src/decompile/cpp/Makefile b/Ghidra/Features/Decompiler/src/decompile/cpp/Makefile
+index c44d44eb..08145ef8 100644
+--- a/Ghidra/Features/Decompiler/src/decompile/cpp/Makefile
++++ b/Ghidra/Features/Decompiler/src/decompile/cpp/Makefile
+@@ -17,7 +17,7 @@ ifeq ($(OS),Linux)
+ ifndef ARCH
+   ARCH=$(CPU)
+ endif
+-ifeq ($(ARCH),x86_64)
++ifneq ($(filter x86_64 ppc64 ppc64le aarch64,$(ARCH)),)
+   ARCH_TYPE=-m64
+   OSDIR=linux64
+ else
 diff --git a/Ghidra/Framework/Generic/src/main/java/ghidra/framework/Architecture.java b/Ghidra/Framework/Generic/src/main/java/ghidra/framework/Architecture.java
-index 1ed37dd..471a1f4 100644
+index 1ed37ddd..471a1f4d 100644
 --- a/Ghidra/Framework/Generic/src/main/java/ghidra/framework/Architecture.java
 +++ b/Ghidra/Framework/Generic/src/main/java/ghidra/framework/Architecture.java
 @@ -21,6 +21,8 @@ public enum Architecture {
@@ -23,7 +60,7 @@ index 1ed37dd..471a1f4 100644
  
  	/**
 diff --git a/Ghidra/Framework/Generic/src/main/java/ghidra/framework/Platform.java b/Ghidra/Framework/Generic/src/main/java/ghidra/framework/Platform.java
-index 8a4c54b..c62709f 100644
+index 8a4c54b7..c62709fb 100644
 --- a/Ghidra/Framework/Generic/src/main/java/ghidra/framework/Platform.java
 +++ b/Ghidra/Framework/Generic/src/main/java/ghidra/framework/Platform.java
 @@ -50,6 +50,21 @@ public enum Platform {
@@ -49,7 +86,7 @@ index 8a4c54b..c62709f 100644
  	 * Identifies a Linux OS, the architecture for which we do not know or have not encountered
  	 */
 diff --git a/build.gradle b/build.gradle
-index c3eb0ef..2eb6b8b 100644
+index c3eb0efa..2eb6b8b5 100644
 --- a/build.gradle
 +++ b/build.gradle
 @@ -261,6 +261,8 @@ String getCurrentPlatformName() {
@@ -71,5 +108,5 @@ index c3eb0ef..2eb6b8b 100644
  		}
  	}
 -- 
-2.19.2
+2.21.0
 
