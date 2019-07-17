@@ -56,8 +56,8 @@ SRC_URI+="
 	https://repo.maven.apache.org/maven2/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar
 	https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.18/commons-compress-1.18.jar
 	https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.5/commons-lang3-3.5.jar
-	https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-api/2.8.1/log4j-api-2.8.1.jar
-	https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-core/2.8.1/log4j-core-2.8.1.jar
+	https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.jar
+	https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-core/2.8.2/log4j-core-2.8.2.jar
 	https://repo.maven.apache.org/maven2/org/hamcrest/hamcrest-all/1.3/hamcrest-all-1.3.jar
 	https://repo.maven.apache.org/maven2/org/jdom/jdom-legacy/1.1.3/jdom-legacy-1.1.3.jar
 	https://repo.maven.apache.org/maven2/org/jmockit/jmockit/1.44/jmockit-1.44.jar
