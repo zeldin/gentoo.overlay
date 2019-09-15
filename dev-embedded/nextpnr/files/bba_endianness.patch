@@ -1,0 +1,40 @@
+--- nextpnr-9999/bba/main.cc.orig	2019-09-15 02:17:34.254181191 +0200
++++ nextpnr-9999/bba/main.cc	2019-09-15 02:19:55.472501885 +0200
+@@ -66,11 +66,17 @@
+     return p;
+ }
+ 
++bool testBigEndian()
++{
++    int n = 1;
++    return !*(const char *)&n;
++}
++
+ int main(int argc, char **argv)
+ {
+     bool debug = false;
+     bool verbose = false;
+-    bool bigEndian = false;
++    bool bigEndian;
+     bool writeC = false;
+     char buffer[512];
+ 
+@@ -81,6 +87,7 @@
+     options.add_options()("verbose,v", "verbose output");
+     options.add_options()("debug,d", "debug output");
+     options.add_options()("be,b", "big endian");
++    options.add_options()("le,l", "little endian");
+     options.add_options()("c,c", "write c strings");
+     options.add_options()("files", po::value<std::vector<std::string>>(), "file parameters");
+     pos.add("files", -1);
+@@ -106,6 +113,10 @@
+         debug = true;
+     if (vm.count("be"))
+         bigEndian = true;
++    else if (vm.count("le"))
++        bigEndian = false;
++    else
++        bigEndian = testBigEndian();
+     if (vm.count("c"))
+         writeC = true;
+ 
