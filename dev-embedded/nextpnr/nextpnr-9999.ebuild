@@ -23,8 +23,6 @@ RDEPEND="gui? ( dev-qt/qtgui:5 )
          ice40? ( dev-embedded/icestorm )"
 DEPEND="$RDEPEND ${PYTHON_DEPS}"
 
-PATCHES=( "${FILESDIR}"/bba_endianness.patch )
-
 pkg_pretend() {
         [[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
 }
