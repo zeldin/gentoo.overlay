@@ -3,6 +3,7 @@ URI="http://ftp.monash.edu.au/pub/nihongo/${PN}.gz"
 LICENSE="CC-BY-SA-3.0"
 SLOT="0"
 KEYWORDS=""
+PROPERTIES="live"
 DEPEND="net-misc/wget app-dicts/xjdic"
 
 src_unpack() {
