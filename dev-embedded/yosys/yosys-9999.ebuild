@@ -25,6 +25,8 @@ DEPEND="abc? ( dev-vcs/git )
 	sys-devel/flex sys-devel/bison sys-devel/make
 	$RDEPEND"
 
+RESTRICT="abc? ( network-sandbox )"
+
 src_unpack() {
 	if [[ ${PV} = *9999* ]]; then
 		git-2_src_unpack

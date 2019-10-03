@@ -18,6 +18,8 @@ DEPEND="abc? ( dev-vcs/mercurial )
 	sys-devel/flex sys-devel/bison sys-devel/make
 	$RDEPEND"
 
+RESTRICT="abc? ( network-sandbox )"
+
 src_unpack() {
 	default_src_unpack
 	if use abc; then
