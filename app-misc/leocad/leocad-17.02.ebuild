@@ -2,11 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header$
 
-EAPI=5
+EAPI=6
 
-inherit qmake-utils
+inherit qmake-utils xdg
 
-SRC_URI="https://github.com/leozide/${PN}/archive/v${PV}.tar.gz \
+SRC_URI="https://github.com/leozide/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz \
 	https://github.com/leozide/${PN}/releases/download/v${PV}/Library-Linux-9781.zip"
 
 KEYWORDS="~ppc ~ppc64"
@@ -32,8 +32,9 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 src_configure() {
-        use qt4 && eqmake4
-        use qt5 && eqmake5
+	local qmake_args=(DOCS_DIR=/usr/share/doc/"${P}")
+        use qt4 && eqmake4 "${qmake_args[@]}"
+        use qt5 && eqmake5 "${qmake_args[@]}"
 }
 
 src_install() {
