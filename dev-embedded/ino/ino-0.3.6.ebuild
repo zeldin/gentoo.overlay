@@ -19,7 +19,6 @@ RDEPEND="${PYTHON_DEPS}
 	>=dev-python/jinja-2[${PYTHON_USEDEP}]
 	dev-python/pyserial[${PYTHON_USEDEP}]
 	dev-python/configobj[${PYTHON_USEDEP}]
-	dev-python/ordereddict[${PYTHON_USEDEP}]
 
 "
 DEPEND="
