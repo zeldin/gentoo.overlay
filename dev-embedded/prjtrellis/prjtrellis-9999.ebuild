@@ -13,8 +13,9 @@ if [[ ${PV} = *9999* ]]; then
 else
         SRC_URI="https://github.com/SymbiFlow/prjtrellis/archive/${PV}.tar.gz -> ${P}.tar.gz"
         KEYWORDS="~ppc64 ~arm64"
-	PROPERTIES="live"
 fi
+
+RESTRICT="network-sandbox"
 
 LICENSE="ISC"
 SLOT="0"
