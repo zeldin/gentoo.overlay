@@ -48,7 +48,7 @@ src_configure() {
                 -DPYTHON_LIBRARY="$(python_get_library_path)"
                 -DARCH="$(IFS=';'; echo "${arches[*]}")"
         )
-        use ecp5 && mycmakeargs+=( -DTRELLIS_ROOT=/usr/share/trellis -DPYTRELLIS_LIBDIR=/usr/$(get_libdir)/trellis )
+        use ecp5 && mycmakeargs+=( -DTRELLIS_INSTALL_PREFIX=/usr -DPYTRELLIS_LIBDIR=/usr/$(get_libdir)/trellis )
         use ice40 && mycmakeargs+=( -DICEBOX_ROOT=/usr/share/icebox )
         cmake-utils_src_configure
 }
