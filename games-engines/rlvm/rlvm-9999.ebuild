@@ -4,7 +4,7 @@ inherit eutils scons-utils toolchain-funcs games gnome2-utils
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/eglaysher/${PN}.git"
-	inherit git-2
+	inherit git-r3
 	SRC_URI=""
 	KEYWORDS=""
 else

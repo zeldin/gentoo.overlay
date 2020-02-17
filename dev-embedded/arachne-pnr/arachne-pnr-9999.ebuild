@@ -3,7 +3,7 @@ EAPI=5
 inherit eutils
 
 EGIT_REPO_URI="git://github.com/cseed/arachne-pnr.git"
-inherit git-2
+inherit git-r3
 SRC_URI=""
 KEYWORDS=""
 

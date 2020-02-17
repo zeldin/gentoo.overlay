@@ -4,7 +4,7 @@ inherit eutils
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="git://github.com/cliffordwolf/yosys.git"
-	inherit git-2
+	inherit git-r3
 	SRC_URI=""
 	KEYWORDS=""
 else
@@ -29,7 +29,7 @@ RESTRICT="abc? ( network-sandbox )"
 
 src_unpack() {
 	if [[ ${PV} = *9999* ]]; then
-		git-2_src_unpack
+		git-r3_src_unpack
 	else
 		default_src_unpack
 	fi

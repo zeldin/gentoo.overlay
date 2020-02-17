@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit cmake-utils git-2
+inherit cmake-utils git-r3
 
 IUSE="examples luajit"
 
@@ -43,7 +43,7 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	use luajit && EGIT_BRANCH="linux-luajit"
-	git-2_src_unpack
+	git-r3_src_unpack
 }
 
 src_prepare() {
