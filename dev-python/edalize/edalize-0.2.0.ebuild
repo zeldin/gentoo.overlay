@@ -15,7 +15,8 @@ KEYWORDS="~arm64 ~ppc ~ppc64"
 RDEPEND="${PYTHON_DEPS}
 	>=dev-python/pytest-3.3.0[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
-	<dev-python/jinja-2.11[${PYTHON_USEDEP}]
+	|| ( <dev-python/jinja-2.11[${PYTHON_USEDEP}]
+	     >=dev-python/jinja-2.11.2[${PYTHON_USEDEP}] )
 "
 DEPEND="${RDEPEND}
         dev-python/setuptools[${PYTHON_USEDEP}]
