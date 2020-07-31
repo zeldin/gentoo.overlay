@@ -61,6 +61,10 @@ src_install() {
 
     dosym tegra/libcuda.so /usr/$(get_libdir)/libcuda.so
     dosym libcuda.so.1.1 /usr/$(get_libdir)/tegra/libcuda.so.1
+
+    dosym libv4l2.so.0  /usr/$(get_libdir)/libv4l2.so
+    dosym libv4lconvert.so.0 /usr/$(get_libdir)/libv4lconvert.so
+    dosym libvulkan.so.1  /usr/$(get_libdir)/libvulkan.so
 }
 
 pkg_postinst() {
