@@ -1,6 +1,6 @@
 EAPI=5
 
-PYTHON_COMPAT=( python3_{3,4,5,6,7} )
+PYTHON_COMPAT=( python3_{3,4,5,6,7,8} )
 
 inherit eutils python-single-r1
 
