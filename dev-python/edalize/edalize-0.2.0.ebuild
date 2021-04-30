@@ -1,4 +1,4 @@
-EAPI=5
+EAPI=6
 
 PYTHON_COMPAT=( python3_{5,6,7,8} )
 
