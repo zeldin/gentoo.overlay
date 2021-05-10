@@ -4,8 +4,6 @@
 
 EAPI=5
 
-inherit base
-
 SRC_URI="http://www.moria.de/~michael/cpmtools/cpmtools-${PV}.tar.gz"
 
 KEYWORDS="~ppc"
