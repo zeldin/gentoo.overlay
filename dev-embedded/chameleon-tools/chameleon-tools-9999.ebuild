@@ -1,4 +1,6 @@
-EAPI=6
+EAPI=7
+
+WX_GTK_VER=3.0-gtk3
 
 inherit subversion wxwidgets
 
@@ -13,8 +15,6 @@ DEPEND=">=dev-embedded/cc65-1.7
 	app-arch/zip
 	app-arch/unzip"
 REPEND=""
-
-WX_GTK_VER=3.0-gtk3
 
 pkg_setup() {
     setup-wxwidgets
