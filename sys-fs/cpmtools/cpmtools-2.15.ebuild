@@ -19,6 +19,10 @@ RDEPEND=""
 
 DEPEND="${RDEPEND}"
 
+src_configure() {
+	econf LIBS="-ltinfo"
+}
+
 src_install() {
     dodir /usr/bin
     emake prefix="${D}/usr" MANDIR="${D}/usr/share/man" install || die "Install failed"
