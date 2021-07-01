@@ -23,7 +23,12 @@ src_unpack() {
     for deb in ./*.deb; do
 	unpack_deb ${deb}
     done
+    mv usr/lib/aarch64-linux-gnu/* usr/local/cuda-*/targets/aarch64-linux/lib/
+    rmdir usr/lib/aarch64-linux-gnu
+    mv usr/include/* usr/local/cuda-*/targets/aarch64-linux/include/
+    rmdir usr/include
 }
+
 
 src_install() {
     dodir /etc
