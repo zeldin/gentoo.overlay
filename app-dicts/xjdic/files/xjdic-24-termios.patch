@@ -1,5 +1,5 @@
---- xjdfrontend.c.orig	2012-11-25 17:32:41.037761430 +0100
-+++ xjdfrontend.c	2012-11-25 17:35:36.676641419 +0100
+--- xjdic.orig/xjdfrontend.c	2012-11-25 17:32:41.037761430 +0100
++++ xjdic/xjdfrontend.c	2012-11-25 17:35:36.676641419 +0100
 @@ -246,7 +246,7 @@
      ioctl(0, TCGETA, &orig); ioctl(0, TCGETA, &new);
      new.c_lflag &= ~ICANON; new.c_lflag &= ~ISIG; new.c_lflag &= ~ECHO;

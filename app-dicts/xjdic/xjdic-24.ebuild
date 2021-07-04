@@ -1,6 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
+
+EAPI=6
+
 inherit eutils
 
 DESCRIPTION="Electronic Japanese-English Dictionary Program"
@@ -11,15 +14,13 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 PDEPEND="app-dicts/kanjidic app-dicts/edict"
 
-src_unpack () {
-    unpack ${A} || die
-    epatch ${FILESDIR}/${P}.patch || die
-    epatch ${FILESDIR}/${P}-termios.patch || die
-    epatch ${FILESDIR}/${PN}-fix-reply-overrun.patch || die
-}
+PATCHES=( "${FILESDIR}/${P}.patch" "${FILESDIR}/${P}-termios.patch"
+          "${FILESDIR}/${PN}-fix-reply-overrun.patch" )
+
+S="${WORKDIR}"
 
 src_compile () {
-    emake || die
+    emake CC="$(tc-getCC) -fcommon"
 }
 
 src_install () {
