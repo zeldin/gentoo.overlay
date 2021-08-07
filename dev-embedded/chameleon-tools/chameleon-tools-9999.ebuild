@@ -13,7 +13,8 @@ IUSE=""
 DEPEND=">=dev-embedded/cc65-1.7
         dev-embedded/64tass
 	app-arch/zip
-	app-arch/unzip"
+	app-arch/unzip
+	media-gfx/imagemagick"
 REPEND=""
 
 pkg_setup() {
