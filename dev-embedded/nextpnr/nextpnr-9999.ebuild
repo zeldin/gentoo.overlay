@@ -1,11 +1,18 @@
 EAPI=7
 
 PYTHON_COMPAT=( python3_{5,6,7,8,9} )
-inherit cmake-utils python-single-r1 git-r3
+inherit cmake-utils python-single-r1
 
-EGIT_REPO_URI="https://github.com/YosysHQ/nextpnr.git"
-SRC_URI=""
-KEYWORDS=""
+if [[ ${PV} = *9999* ]]; then
+	EGIT_REPO_URI="https://github.com/YosysHQ/nextpnr.git"
+	inherit git-r3
+	SRC_URI=""
+	KEYWORDS=""
+else
+        SRC_URI="https://github.com/YosysHQ/${PN}/archive/refs/tags/${P}.tar.gz"
+        S="${WORKDIR}/${PN}-${P}"
+        KEYWORDS="~ppc64 ~arm64"
+fi
 
 LICENSE="ISC"
 SLOT="0"
