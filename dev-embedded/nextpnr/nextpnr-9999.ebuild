@@ -57,5 +57,6 @@ src_configure() {
         )
         use ecp5 && mycmakeargs+=( -DTRELLIS_INSTALL_PREFIX=/usr -DPYTRELLIS_LIBDIR=/usr/$(get_libdir)/trellis )
         use ice40 && mycmakeargs+=( -DICEBOX_ROOT=/usr/share/icebox )
+        [[ ${PV} != *9999* ]] && mycmakeargs+=( -DCURRENT_GIT_VERSION=${PV} )
         cmake-utils_src_configure
 }
