@@ -3,7 +3,7 @@ EAPI=5
 inherit eutils
 
 if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/cliffordwolf/yosys.git"
+	EGIT_REPO_URI="https://github.com/cliffordwolf/yosys.git"
 	inherit git-r3
 	SRC_URI=""
 	KEYWORDS=""

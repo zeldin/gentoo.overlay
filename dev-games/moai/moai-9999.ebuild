@@ -8,7 +8,7 @@ inherit cmake-utils git-r3
 
 IUSE="examples luajit"
 
-EGIT_REPO_URI="git://github.com/spacepluk/moai-dev"
+EGIT_REPO_URI="https://github.com/spacepluk/moai-dev"
 EGIT_BRANCH="linux-cmake"
 
 KEYWORDS=""

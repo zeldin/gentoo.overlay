@@ -4,7 +4,7 @@ PYTHON_COMPAT=( python3_{3,4,5,6,7,8,9} )
 
 inherit eutils python-single-r1
 
-EGIT_REPO_URI="git://github.com/cliffordwolf/icestorm.git"
+EGIT_REPO_URI="https://github.com/cliffordwolf/icestorm.git"
 inherit git-r3
 SRC_URI=""
 KEYWORDS=""
