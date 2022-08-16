@@ -19,7 +19,8 @@ HOMEPAGE="http://getmoai.com/"
 LICENSE="CPAL-1.0"
 SLOT="0"
 
-PATCHES=("${FILESDIR}"/curl-sizeof-long.patch)
+PATCHES=("${FILESDIR}"/curl-sizeof-long.patch
+	 "${FILESDIR}"/rgba-endian.patch)
 
 CMAKE_USE_DIR="${S}/cmake"
 
