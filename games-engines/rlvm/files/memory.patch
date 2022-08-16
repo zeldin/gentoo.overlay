@@ -1,0 +1,10 @@
+--- rlvm-9999/src/systems/base/system.h.orig	2022-08-16 15:42:44.191525019 +0200
++++ rlvm-9999/src/systems/base/system.h	2022-08-16 15:43:00.717574599 +0200
+@@ -37,6 +37,7 @@
+ #include <string>
+ #include <utility>
+ #include <vector>
++#include <memory>
+ 
+ class GraphicsSystem;
+ class EventSystem;
