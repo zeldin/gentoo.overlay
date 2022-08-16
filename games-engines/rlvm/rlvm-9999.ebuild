@@ -28,6 +28,7 @@ done
 RDEPEND="media-fonts/monafont[truetype]
          media-fonts/dejavu
          >=dev-libs/boost-1.40.0
+	 >=media-libs/freetype-2
          media-libs/libogg
          media-libs/libvorbis
          media-libs/libmad
@@ -39,7 +40,7 @@ RDEPEND="media-fonts/monafont[truetype]
          dev-games/guichan[opengl,sdl]
          lua? ( dev-lang/lua )"
 
-DEPEND="$RDEPEND"
+DEPEND="$RDEPEND dev-util/pkgconf"
 
 src_prepare() {
       epatch "${FILESDIR}"/fontpath.patch
