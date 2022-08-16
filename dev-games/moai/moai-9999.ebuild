@@ -19,6 +19,8 @@ HOMEPAGE="http://getmoai.com/"
 LICENSE="CPAL-1.0"
 SLOT="0"
 
+PATCHES=("${FILESDIR}"/rtaudio-abs.patch)
+
 CMAKE_USE_DIR="${S}/cmake"
 
 RDEPEND="!luajit? ( >=dev-lang/lua-5.1.3 )
@@ -47,7 +49,7 @@ src_unpack() {
 }
 
 src_prepare() {
-	use luajit && PATCHES=( "${FILESDIR}"/luajit-library-version.patch )
+	use luajit && PATCHES+=( "${FILESDIR}"/luajit-library-version.patch )
 	cmake_src_prepare
 }
 

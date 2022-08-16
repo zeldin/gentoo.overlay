@@ -1,0 +1,11 @@
+--- moai-dev-Version-1.5.2/src/zl-util/ZLAdapterInfo_posix.cpp.orig	2022-08-16 18:06:37.562792075 +0200
++++ moai-dev-Version-1.5.2/src/zl-util/ZLAdapterInfo_posix.cpp	2022-08-16 18:06:58.748305119 +0200
+@@ -31,7 +31,7 @@
+ 
+ #if !( NACL || ANDROID )
+   #include <sys/socket.h>
+-  #include <sys/sysctl.h>
++  #include <linux/sysctl.h>
+   #include <net/if.h>
+ #endif
+ 

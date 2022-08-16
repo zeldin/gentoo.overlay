@@ -20,7 +20,9 @@ LICENSE="CPAL-1.0"
 SLOT="0"
 
 PATCHES=("${FILESDIR}"/curl-sizeof-long.patch
-	 "${FILESDIR}"/rgba-endian.patch)
+	 "${FILESDIR}"/rgba-endian.patch
+	 "${FILESDIR}"/curl-stropts.patch
+	 "${FILESDIR}"/sysctl.patch)
 
 CMAKE_USE_DIR="${S}/cmake"
 

@@ -1,0 +1,11 @@
+--- moai-9999/3rdparty/rtaudio-4.0.11/RtAudio.cpp.orig	2022-08-16 18:19:01.323379593 +0200
++++ moai-9999/3rdparty/rtaudio-4.0.11/RtAudio.cpp	2022-08-16 18:22:45.049030905 +0200
+@@ -7179,7 +7179,7 @@
+   }
+ 
+   // Verify the sample rate setup worked.
+-  if ( abs( srate - sampleRate ) > 100 ) {
++  if ( std::abs(int( srate - sampleRate )) > 100 ) {
+     close( fd );
+     errorStream_ << "RtApiOss::probeDeviceOpen: device (" << ainfo.name << ") does not support sample rate (" << sampleRate << ").";
+     errorText_ = errorStream_.str();

@@ -1,0 +1,11 @@
+--- moai-dev-Version-1.5.2/cmake/third-party/curl/curl/curl_config.h.orig	2022-08-16 18:01:51.312391515 +0200
++++ moai-dev-Version-1.5.2/cmake/third-party/curl/curl/curl_config.h	2022-08-16 18:02:11.913973560 +0200
+@@ -664,7 +664,7 @@
+ /* #undef HAVE_STRNICMP */
+ 
+ /* Define to 1 if you have the <stropts.h> header file. */
+-#define HAVE_STROPTS_H 1
++/* #undef HAVE_STROPTS_H */
+ 
+ /* Define to 1 if you have the strstr function. */
+ #define HAVE_STRSTR 1
