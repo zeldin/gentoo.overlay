@@ -50,4 +50,5 @@ src_unpack() {
 src_prepare() {
 	cmake-utils_src_prepare
 	sed -i -e '/find_package(Git)/d' "${CMAKE_USE_DIR}"/CMakeLists.txt
+	eapply_user
 }

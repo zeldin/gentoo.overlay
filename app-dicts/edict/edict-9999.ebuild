@@ -1,3 +1,4 @@
+EAPI=7
 DESCRIPTION="Dictionary for xjdic"
 URI="http://ftp.edrdg.org/pub/Nihongo/${PN}.gz"
 LICENSE="CC-BY-SA-3.0"
@@ -5,6 +6,7 @@ SLOT="0"
 KEYWORDS=""
 PROPERTIES="live"
 DEPEND="net-misc/wget app-dicts/xjdic"
+S="${WORKDIR}"
 
 src_unpack() {
    wget -N ${URI}

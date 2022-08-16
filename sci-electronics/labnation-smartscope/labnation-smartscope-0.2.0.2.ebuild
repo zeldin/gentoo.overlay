@@ -1,4 +1,4 @@
-EAPI=5
+EAPI=6
 
 inherit unpacker
 
@@ -22,6 +22,8 @@ src_unpack() {
 }
 
 src_prepare() {
+	default
+
 	# QA: udev rules should go in lib
 	[ -d etc ] && mv etc lib
 

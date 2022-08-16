@@ -1,4 +1,4 @@
-EAPI=5
+EAPI=6
 
 inherit eutils scons-utils toolchain-funcs games gnome2-utils
 
@@ -42,7 +42,7 @@ DEPEND="$RDEPEND"
 src_prepare() {
       epatch "${FILESDIR}"/fontpath.patch
       epatch "${FILESDIR}"/iostream.patch
-      epatch_user
+      eapply_user
 }
 
 src_configure() {
