@@ -4,7 +4,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+inherit cmake
 
 SRC_URI="http://chipmunk-physics.net/release/Chipmunk-5.x/Chipmunk-${PV}.tgz"
 

@@ -4,7 +4,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+inherit cmake
 
 IUSE="chipmunk +curl +crypto examples +jpeg json luajit +ssl +png sqlite tinyxml +truetype vorbis"
 
@@ -66,11 +66,11 @@ src_configure() {
 		-DMOAI_VORBIS=$(usex vorbis)
 		-DMOAI_UNTZ=ON
 	)
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 src_install() {
-	dobin "${CMAKE_BUILD_DIR}"/host-sdl/moai || die
+	dobin "${BUILD_DIR}"/host-sdl/moai || die
 	if use examples; then
 		docompress -x /usr/share/doc/${P}/examples
 		docinto examples

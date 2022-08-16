@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit base eutils unpacker flag-o-matic autotools-multilib
+inherit eutils unpacker flag-o-matic multilib
 
 DESCRIPTION="A library to decode IPF files"
 HOMEPAGE="http://www.kryoflux.com/"
@@ -30,7 +30,9 @@ src_unpack() {
 }
 
 src_prepare() {
-	base_src_prepare
+	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
+	debug-print "$FUNCNAME: applying user patches"
+	epatch_user
 	chmod +x CAPSImg/configure
 	multilib_copy_sources
 }

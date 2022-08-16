@@ -1,6 +1,8 @@
 EAPI=6
 
-inherit eutils scons-utils toolchain-funcs games gnome2-utils
+PYTHON_COMPAT=( python3_{8..11} )
+
+inherit eutils python-any-r1 scons-utils toolchain-funcs gnome2-utils
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/eglaysher/${PN}.git"
@@ -68,8 +70,7 @@ locale_install() {
 }
 
 src_install() {
-      exeinto "${GAMES_BINDIR}"
-      doexe build/release/rlvm
+      dobin build/release/rlvm
       domenu src/platforms/gtk/rlvm.desktop
       for res in 16 24 32 48 128 256 ; do
               insinto /usr/share/icons/hicolor/${res}x${res}/apps

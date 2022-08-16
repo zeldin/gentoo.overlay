@@ -1,7 +1,7 @@
 EAPI=7
 
 PYTHON_COMPAT=( python3_{5,6,7,8,9,10} )
-inherit cmake-utils python-single-r1
+inherit cmake python-single-r1
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/YosysHQ/nextpnr.git"
@@ -58,5 +58,5 @@ src_configure() {
         use ecp5 && mycmakeargs+=( -DTRELLIS_INSTALL_PREFIX=/usr -DPYTRELLIS_LIBDIR=/usr/$(get_libdir)/trellis )
         use ice40 && mycmakeargs+=( -DICEBOX_ROOT=/usr/share/icebox )
         [[ ${PV} != *9999* ]] && mycmakeargs+=( -DCURRENT_GIT_VERSION=${PV} )
-        cmake-utils_src_configure
+        cmake_src_configure
 }

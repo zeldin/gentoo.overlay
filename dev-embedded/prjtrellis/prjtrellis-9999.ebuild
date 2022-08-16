@@ -1,9 +1,8 @@
 EAPI=7
 
 PYTHON_COMPAT=( python3_{5,6,7,8,9,10} )
-CMAKE_MIN_VERSION="3.5"
 CMAKE_IN_SOURCE_BUILD="1"
-inherit cmake-utils python-single-r1
+inherit cmake python-single-r1
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/YosysHQ/prjtrellis.git"
@@ -27,6 +26,7 @@ RDEPEND="${PYTHON_DEPS}
          dev-libs/boost"
 DEPEND="$RDEPEND
          dev-vcs/git"
+BDEPEND=">=dev-util/cmake-3.5"
 
 CMAKE_USE_DIR="${S}/libtrellis"
 
@@ -48,7 +48,7 @@ src_unpack() {
 }
 
 src_prepare() {
-	cmake-utils_src_prepare
+	cmake_src_prepare
 	sed -i -e '/find_package(Git)/d' "${CMAKE_USE_DIR}"/CMakeLists.txt
 	eapply_user
 }

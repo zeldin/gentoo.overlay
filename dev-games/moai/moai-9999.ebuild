@@ -4,7 +4,7 @@
 
 EAPI=7
 
-inherit cmake-utils git-r3
+inherit cmake git-r3
 
 IUSE="examples luajit"
 
@@ -48,11 +48,11 @@ src_unpack() {
 
 src_prepare() {
 	use luajit && PATCHES=( "${FILESDIR}"/luajit-library-version.patch )
-	cmake-utils_src_prepare
+	cmake_src_prepare
 }
 
 src_install() {
-	dobin "${CMAKE_BUILD_DIR}"/src/hosts/moai-untz || die
+	dobin "${BUILD_DIR}"/src/hosts/moai-untz || die
 	if use examples; then
 		docompress -x /usr/share/doc/${P}/examples
 		docinto examples
