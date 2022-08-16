@@ -1,0 +1,12 @@
+diff -burN rlvm-release-0.14.orig/SConstruct rlvm-release-0.14/SConstruct
+--- rlvm-release-0.14.orig/SConstruct	2022-08-16 16:55:38.315272825 +0200
++++ rlvm-release-0.14/SConstruct	2022-08-16 16:55:43.290686380 +0200
+@@ -293,7 +293,7 @@
+ 
+ # Get the configuration from sdl and freetype
+ env.ParseConfig("sdl-config --cflags")
+-env.ParseConfig("freetype-config --cflags --libs")
++env.ParseConfig("pkg-config freetype2 --cflags --libs")
+ 
+ #########################################################################
+ ## Building subcomponent functions

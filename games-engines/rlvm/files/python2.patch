@@ -1,0 +1,101 @@
+diff -burN rlvm-release-0.14.orig/SConscript.cocoa rlvm-release-0.14/SConscript.cocoa
+--- rlvm-release-0.14.orig/SConscript.cocoa	2022-08-16 16:55:38.315272825 +0200
++++ rlvm-release-0.14/SConscript.cocoa	2022-08-16 16:55:43.290686380 +0200
+@@ -72,7 +72,7 @@
+   dmgname = GetOption('dmgname')
+   filename = string.replace(dmgname, ' ', '_') + ".dmg"
+   if not GetOption('fullstatic'):
+-    print "**** WARNING: RELEASE BUILDS MUST HAVE --fullstatic ****"
++    print ("**** WARNING: RELEASE BUILDS MUST HAVE --fullstatic ****")
+     exit
+ 
+   static_env.Command('$OUTPUT_DIR/' + filename,
+diff -burN rlvm-release-0.14.orig/SConscript.luarlvm rlvm-release-0.14/SConscript.luarlvm
+--- rlvm-release-0.14.orig/SConscript.luarlvm	2022-08-16 16:55:38.315272825 +0200
++++ rlvm-release-0.14/SConscript.luarlvm	2022-08-16 16:55:43.290686380 +0200
+@@ -34,7 +34,7 @@
+ if config.CheckLibWithHeader('lua5.1', 'lua5.1/lua.h', 'cpp'):
+   env['BUILD_LUA_TESTS'] = True
+ else:
+-  print "Not building luaRlvm. (Don't worry, it's only a testing tool!)"
++  print ("Not building luaRlvm. (Don't worry, it's only a testing tool!)")
+ 
+ test_env = config.Finish()
+ 
+diff -burN rlvm-release-0.14.orig/SConstruct rlvm-release-0.14/SConstruct
+--- rlvm-release-0.14.orig/SConstruct	2022-08-16 16:55:38.315272825 +0200
++++ rlvm-release-0.14/SConstruct	2022-08-16 16:55:43.290686380 +0200
+@@ -189,9 +189,9 @@
+ def VerifyLibrary(config, library, header):
+   if not config.CheckLibWithHeader(library, header, "c"):
+     if config.CheckLib(library):
+-      print "You have " + library + " installed, but the development headers aren't installed."
++      print ("You have " + library + " installed, but the development headers aren't installed.")
+     else:
+-      print "You need " + library + " to compile this program!"
++      print ("You need " + library + " to compile this program!")
+     Exit(1)
+ 
+ def CheckForSystemLibrary(config, library_dict, componentlist):
+@@ -211,7 +211,7 @@
+ 
+   if not res:
+     lib_name = library_dict['library']
+-    print "(Using included version of %s)" % lib_name
++    print ("(Using included version of %s)" % lib_name)
+     componentlist.append(lib_name)
+     config.Define("HAVE_LIB" + lib_name, 1,
+                   "Define to 1 if you have the `%s' library." % lib_name)
+@@ -227,7 +227,7 @@
+                                        'CheckGuichan' : CheckGuichan},
+                        config_h="build/config.h")
+ if not config.CheckBoost('1.40'):
+-  print "Boost version >= 1.40 needed to compile rlvm!"
++  print ("Boost version >= 1.40 needed to compile rlvm!")
+   Exit(1)
+ 
+ VerifyLibrary(config, 'pthread', 'pthread.h')
+@@ -244,7 +244,7 @@
+ if env['PLATFORM'] != 'darwin':
+   VerifyLibrary(config, 'SDL', 'SDL/SDL.h')
+ else:
+-  print "Can't properly detect SDL under OSX. Assuming you have the libraries."
++  print ("Can't properly detect SDL under OSX. Assuming you have the libraries.")
+ 
+ # Libraries we need, but will use a local copy if not installed.
+ local_sdl_libraries = [
+@@ -274,7 +274,7 @@
+   CheckForSystemLibrary(config, library_dict, subcomponents)
+ 
+ if not config.CheckGuichan():
+-  print "(Using included copy of guichan)"
++  print ("(Using included copy of guichan)")
+   subcomponents.append("guichan")
+ 
+ # Really optional libraries that jagarl's file loaders take advantage of if on
+diff -burN rlvm-release-0.14.orig/site_scons/site_tools/rlvm.py rlvm-release-0.14/site_scons/site_tools/rlvm.py
+--- rlvm-release-0.14.orig/site_scons/site_tools/rlvm.py	2022-08-16 16:55:38.315272825 +0200
++++ rlvm-release-0.14/site_scons/site_tools/rlvm.py	2022-08-16 16:55:43.294685908 +0200
+@@ -56,19 +56,19 @@
+   objects.extend(args)
+ 
+   # TODO: Deal with RLVM_LIBS in a shared objecty way
+-  if kwargs.has_key('rlvm_libs'):
++  if 'rlvm_libs' in kwargs:
+     for lib_name in kwargs['rlvm_libs']:
+       objects.append(env['LIBPREFIX'] + lib_name + env['LIBSUFFIX'])
+ 
+   # Add all static libraries from the various categories
+-  if kwargs.has_key('use_lib_set'):
++  if 'use_lib_set' in kwargs:
+     for lib_set_name in kwargs['use_lib_set']:
+       lib_set = cloned_env[_MakeStaticName(lib_set_name)]
+       if lib_set:
+         objects.extend(lib_set)
+ 
+   # First, we need to see if this is a static build
+-  if kwargs.has_key("full_static_build") and kwargs['full_static_build'] == True:
++  if "full_static_build" in kwargs and kwargs['full_static_build'] == True:
+     # We must unpack each entry in LIBS and try to locate a static library to
+     old_libs = cloned_env['LIBS']
+     libpaths = cloned_env['LIBPATH']

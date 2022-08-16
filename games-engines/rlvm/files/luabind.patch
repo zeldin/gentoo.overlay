@@ -1,0 +1,37 @@
+From 373a3db1c4d3c9a4b9eb60b8bca60fa58d1687f9 Mon Sep 17 00:00:00 2001
+From: Elliot Glaysher <glaysher@umich.edu>
+Date: Sat, 25 Apr 2015 14:38:35 -0700
+Subject: [PATCH] Theoretical fix to building with libboost 1.57+.
+
+This is a speculative copy of a fix applied to homebrew's copy
+of luabind. (https://github.com/glehmann/luabind/commit/8dadb7fae02bbf415ee51f69919cd0d47831cc6c)
+
+Closes #63
+---
+ vendor/luabind/include/luabind/object.hpp | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/vendor/luabind/include/luabind/object.hpp b/vendor/luabind/include/luabind/object.hpp
+index f7b7ca50..9078eba0 100644
+--- a/vendor/luabind/include/luabind/object.hpp
++++ b/vendor/luabind/include/luabind/object.hpp
+@@ -536,6 +536,8 @@ namespace detail
+       handle m_key;
+   };
+ 
++#if BOOST_VERSION < 105700
++
+ // Needed because of some strange ADL issues.
+ 
+ #define LUABIND_OPERATOR_ADL_WKND(op) \
+@@ -557,7 +559,9 @@ namespace detail
+   LUABIND_OPERATOR_ADL_WKND(!=)
+ 
+ #undef LUABIND_OPERATOR_ADL_WKND
+- 
++
++#endif // BOOST_VERSION < 105700
++
+ } // namespace detail
+ 
+ namespace adl

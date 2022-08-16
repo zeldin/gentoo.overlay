@@ -1,0 +1,24 @@
+From fb627bad9129080d2070845bcebe0d7eed9a5243 Mon Sep 17 00:00:00 2001
+From: Jan Beich <jbeich@FreeBSD.org>
+Date: Tue, 27 Nov 2018 13:00:45 +0000
+Subject: [PATCH] Don't bootleg <iostream> via Boost.Serialization
+
+src/systems/base/gan_graphics_object_data.cc:56:12: error: no member named 'cerr' in namespace 'std'
+using std::cerr;
+      ~~~~~^
+---
+ src/systems/base/gan_graphics_object_data.cc | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/systems/base/gan_graphics_object_data.cc b/src/systems/base/gan_graphics_object_data.cc
+index 4178d119..dab8e09a 100644
+--- a/src/systems/base/gan_graphics_object_data.cc
++++ b/src/systems/base/gan_graphics_object_data.cc
+@@ -36,6 +36,7 @@
+ 
+ #include <boost/serialization/export.hpp>
+ #include <boost/filesystem/fstream.hpp>
++#include <iostream>
+ #include <string>
+ #include <vector>
+ 
