@@ -53,6 +53,9 @@ src_configure() {
                 -DPYTHON_EXECUTABLE="${PYTHON}"
                 -DPYTHON_INCLUDE_DIR="$(python_get_includedir)"
                 -DPYTHON_LIBRARY="$(python_get_library_path)"
+                -DPython3_EXECUTABLE="${PYTHON}"
+                -DPython3_INCLUDE_DIR="$(python_get_includedir)"
+                -DPython3_LIBRARY="$(python_get_library_path)"
                 -DARCH="$(IFS=';'; echo "${arches[*]}")"
         )
         use ecp5 && mycmakeargs+=( -DTRELLIS_INSTALL_PREFIX=/usr -DPYTRELLIS_LIBDIR=/usr/$(get_libdir)/trellis )
