@@ -26,7 +26,7 @@ RDEPEND="gui? ( dev-qt/qtgui:5 )
          python? ( ${PYTHON_DEPS} )
          dev-libs/boost
          dev-cpp/eigen:3[openmp?]
-         ecp5? ( dev-embedded/prjtrellis )
+         ecp5? ( >=dev-embedded/prjtrellis-1.3[${PYTHON_SINGLE_USEDEP}] )
          ice40? ( dev-embedded/icestorm )"
 DEPEND="$RDEPEND ${PYTHON_DEPS}"
 
