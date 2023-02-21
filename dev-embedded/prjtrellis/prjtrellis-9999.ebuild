@@ -52,3 +52,12 @@ src_prepare() {
 	sed -i -e '/find_package(Git)/d' "${CMAKE_USE_DIR}"/CMakeLists.txt
 	eapply_user
 }
+
+src_configure() {
+        local mycmakeargs=(
+                -DPython3_EXECUTABLE="${PYTHON}"
+                -DPython3_INCLUDE_DIR="$(python_get_includedir)"
+                -DPython3_LIBRARY="$(python_get_library_path)"
+        )
+        cmake_src_configure
+}
