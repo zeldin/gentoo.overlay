@@ -42,6 +42,7 @@ src_unpack() {
 		case ${PV} in
 			1.0) git checkout d0b219a;;
 			1.1|1.2|1.2.1) git checkout 0ee729d;;
+			1.3) git checkout 35d900a;;
 			*) die "No prjtrellis-db hash for ${PV}??";;
 		esac
 	fi
