@@ -11,6 +11,9 @@ if [[ ${PV} = *9999* ]]; then
 	KEYWORDS=""
 else
         SRC_URI="https://github.com/YosysHQ/prjtrellis/archive/${PV}.tar.gz -> ${P}.tar.gz"
+        if [[ ${PV} =~ ^1\.4 ]]; then
+          SRC_URI="${SRC_URI} https://github.com/YosysHQ/prjtrellis/releases/download/${PV}/prjtrellis-db-${PV}.zip"
+        fi
         KEYWORDS="~ppc64 ~arm64"
 fi
 
@@ -33,6 +36,10 @@ CMAKE_USE_DIR="${S}/libtrellis"
 src_unpack() {
 	if [[ ${PV} = *9999* ]]; then
 		git-r3_src_unpack
+	elif [[ ${A} = *prjtrellis-db* ]]; then
+		default_src_unpack
+		rmdir "${S}/database"
+		mv "${WORKDIR}/prjtrellis-db-master" "${S}/database"
 	else
 		default_src_unpack
 		# prjtrellis tars are missing the database, and there
