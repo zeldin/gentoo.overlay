@@ -3,12 +3,18 @@ EAPI=6
 inherit eutils
 
 if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="https://github.com/cliffordwolf/yosys.git"
+	EGIT_REPO_URI="https://github.com/YosysHQ/yosys.git"
 	inherit git-r3
 	SRC_URI=""
 	KEYWORDS=""
 else
-	SRC_URI="https://github.com/cliffordwolf/yosys/archive/${P}.tar.gz"
+	SRC_URI="https://github.com/YosysHQ/yosys/archive/${P}.tar.gz"
+	if [[ ${PV} =~ ^0\.2[0-9] ]]; then
+		SRC_URI="${SRC_URI} https://github.com/YosysHQ/yosys/releases/download/${P}/abc.tar.gz -> ${PN}-abc-${PV}.tar.gz"
+	fi
+	if [[ ${PV} = 0.29 ]]; then
+		PATCHES=( "${FILESDIR}/${P}-abc_global.patch" )
+	fi
 	S="${WORKDIR}/${PN}-${P}"
 	KEYWORDS="~ppc64 ~arm64"
 fi
@@ -34,14 +40,18 @@ src_unpack() {
 		default_src_unpack
 	fi
 	if use abc; then
-		cd ${S} || die
-		local ABCURL=$(sed -ne '/^ABCURL/s/^.*=//p;T;q' < Makefile)
-		local ABCREV=$(sed -ne '/^ABCREV/s/^.*=//p;T;q' < Makefile)
-		git clone ${ABCURL} abc || die
-		cd abc || die
-		ABCREV=${ABCREV//[[:space:]]}
-		git config --local core.abbrev ${#ABCREV} || die
-		git checkout ${ABCREV} || die
+		if [[ ${A} = *${PN}-abc* ]]; then
+			mv ${WORKDIR}/*-abc-* ${S}/abc
+		else
+			cd ${S} || die
+			local ABCURL=$(sed -ne '/^ABCURL/s/^.*=//p;T;q' < Makefile)
+			local ABCREV=$(sed -ne '/^ABCREV/s/^.*=//p;T;q' < Makefile)
+			git clone ${ABCURL} abc || die
+			cd abc || die
+			ABCREV=${ABCREV//[[:space:]]}
+			git config --local core.abbrev ${#ABCREV} || die
+			git checkout ${ABCREV} || die
+		fi
 	fi
 }
 
@@ -54,6 +64,9 @@ src_configure() {
 		echo "ENABLE_READLINE := `usex readline 1 0`"
 		if ! has_version sys-apps/gawk ; then
 			echo "PRETTY := 0"
+		fi
+		if [[ ${A} = *${PN}-abc* ]]; then
+			echo "ABCREV := default"
 		fi
 	) > Makefile.conf
 }
