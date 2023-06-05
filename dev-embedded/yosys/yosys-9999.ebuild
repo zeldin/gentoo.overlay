@@ -44,13 +44,6 @@ src_unpack() {
 	fi
 }
 
-src_prepare() {
-	if use abc && [[ ${PV} = 0.29 ]]; then
-		PATCHES+=( "${FILESDIR}/${P}-abc_global.patch" )
-	fi
-	default
-}
-
 src_configure() {
 	(
 		echo "CONFIG := `usex clang clang gcc`"
