@@ -40,7 +40,7 @@ src_unpack() {
 		fi
 	else
 		default_src_unpack
-		use abc && mv ${WORKDIR}/*-abc-* ${S}/abc
+		use abc && mv ${WORKDIR}/*abc-* ${S}/abc
 	fi
 }
 
