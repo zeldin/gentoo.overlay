@@ -2,7 +2,7 @@ EAPI=7
 
 PYTHON_COMPAT=( python3_{3,4,5,6,7,8,9,10,11} )
 
-inherit distutils-r1 eutils
+inherit distutils-r1
 
 DESCRIPTION="Generate multi-unit schematic symbols for KiCad from a CSV file."
 HOMEPAGE="https://github.com/xesscorp/KiPart"
