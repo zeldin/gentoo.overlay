@@ -29,7 +29,7 @@ RDEPEND="${PYTHON_DEPS}
          dev-libs/boost"
 DEPEND="$RDEPEND
          dev-vcs/git"
-BDEPEND=">=dev-util/cmake-3.5"
+BDEPEND=">=dev-build/cmake-3.5"
 
 CMAKE_USE_DIR="${S}/libtrellis"
 
