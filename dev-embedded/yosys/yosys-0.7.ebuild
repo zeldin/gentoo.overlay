@@ -15,7 +15,7 @@ RDEPEND="tcl? ( dev-lang/tcl )
 	 readline? ( sys-libs/readline )"
 DEPEND="abc? ( dev-vcs/mercurial )
 	clang? ( sys-devel/clang )
-	sys-devel/flex sys-devel/bison sys-devel/make
+	sys-devel/flex sys-devel/bison dev-build/make
 	$RDEPEND"
 
 RESTRICT="abc? ( network-sandbox )"

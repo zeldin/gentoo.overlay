@@ -22,7 +22,7 @@ RDEPEND="tcl? ( dev-lang/tcl )
 	 plugins? ( virtual/libffi virtual/pkgconfig )
 	 readline? ( sys-libs/readline )"
 DEPEND="clang? ( sys-devel/clang )
-	sys-devel/flex sys-devel/bison sys-devel/make
+	sys-devel/flex sys-devel/bison dev-build/make
 	$RDEPEND"
 
 src_unpack() {
