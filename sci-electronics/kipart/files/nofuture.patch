@@ -1,0 +1,64 @@
+From 45b417df4c79fa0cf0a0b88846bddd0bbc89fd92 Mon Sep 17 00:00:00 2001
+From: Marcus Comstedt <marcus@mc.pp.se>
+Date: Wed, 15 May 2024 14:56:06 +0200
+Subject: [PATCH] Made dependency on future python 2 only
+
+---
+ kipart/kilib2csv.py | 5 +++--
+ setup.py            | 2 +-
+ tests/random_csv.py | 6 +++---
+ 3 files changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/kipart/kilib2csv.py b/kipart/kilib2csv.py
+index a5e4c3f..f8a9e01 100644
+--- a/kipart/kilib2csv.py
++++ b/kipart/kilib2csv.py
+@@ -34,7 +34,6 @@
+ import sys
+ from builtins import open
+ 
+-from future import standard_library
+ from pyparsing import *
+ import sexpdata as sx
+ 
+@@ -42,7 +41,9 @@
+ from .pckg_info import __version__
+ from .py_2_3 import *
+ 
+-standard_library.install_aliases()
++if sys.version_info[0] < 3:
++    from future import standard_library
++    standard_library.install_aliases()
+ 
+ 
+ def _parse_lib_V5(lib_filename):
+diff --git a/setup.py b/setup.py
+index 90e46ef..034ffe2 100644
+--- a/setup.py
++++ b/setup.py
+@@ -27,7 +27,7 @@
+ 
+ requirements = [
+     "affine >= 1.2.0",
+-    "future",
++    "future; python_version<'3'",
+     # "future >= 0.15.0",
+     "pyparsing",
+     "openpyxl",
+diff --git a/tests/random_csv.py b/tests/random_csv.py
+index c53285f..de83392 100644
+--- a/tests/random_csv.py
++++ b/tests/random_csv.py
+@@ -34,9 +34,9 @@
+ from builtins import open
+ from random import choice, randint
+ 
+-from future import standard_library
+-
+-standard_library.install_aliases()
++if sys.version_info[0] < 3:
++    from future import standard_library
++    standard_library.install_aliases()
+ 
+ 
+ THIS_MODULE = locals()
