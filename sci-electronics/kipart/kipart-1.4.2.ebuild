@@ -22,6 +22,8 @@ DEPEND="${RDEPEND}
 
 PATCHES=( "${FILESDIR}/nofuture.patch" )
 
+DISTUTILS_USE_PEP517="setuptools"
+
 python_test() {
         esetup.py test
 }
