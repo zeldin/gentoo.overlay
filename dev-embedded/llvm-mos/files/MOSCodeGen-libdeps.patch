@@ -1,0 +1,18 @@
+--- llvm-mos-9999/llvm/lib/Target/MOS/CMakeLists.txt.orig	2024-06-16 14:20:13.228118230 +0200
++++ llvm-mos-9999/llvm/lib/Target/MOS/CMakeLists.txt	2024-06-16 14:21:11.901294487 +0200
+@@ -60,6 +60,7 @@
+   AsmPrinter
+   BinaryFormat
+   CodeGen
++  CodeGenTypes
+   Core
+   GlobalISel
+   IPO
+@@ -73,6 +74,7 @@
+   SelectionDAG
+   Support
+   Target
++  TargetParser
+   TransformUtils
+ 
+   ADD_TO_COMPONENT

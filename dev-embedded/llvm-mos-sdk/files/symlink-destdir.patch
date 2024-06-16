@@ -1,0 +1,11 @@
+diff --git a/cmake/install-clang-symlink.cmake b/cmake/install-clang-symlink.cmake
+index 618bdcfb..47d7595c 100644
+--- a/cmake/install-clang-symlink.cmake
++++ b/cmake/install-clang-symlink.cmake
+@@ -6,5 +6,5 @@ function(install_clang_symlink bindir platform suffix)
+ 
+   execute_process(
+     COMMAND ${CMAKE_COMMAND} -E create_symlink mos-${suffix} ${file}
+-    WORKING_DIRECTORY ${bindir})
++    WORKING_DIRECTORY "$ENV{DESTDIR}${bindir}")
+ endfunction()

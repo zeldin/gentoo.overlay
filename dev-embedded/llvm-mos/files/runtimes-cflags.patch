@@ -1,0 +1,11 @@
+--- llvm-mos-9999/llvm/runtimes/CMakeLists.txt.orig	2024-06-16 14:55:06.400777175 +0200
++++ llvm-mos-9999/llvm/runtimes/CMakeLists.txt	2024-06-16 14:56:02.470258408 +0200
+@@ -3,7 +3,7 @@
+ # similar although simpler functionality. We should figure out how to merge
+ # the two files.
+ 
+-set(COMMON_CMAKE_ARGS "-DHAVE_LLVM_LIT=ON;-DCLANG_RESOURCE_DIR=${CLANG_RESOURCE_DIR}")
++set(COMMON_CMAKE_ARGS "-DCMAKE_C_FLAGS=;-DHAVE_LLVM_LIT=ON;-DCLANG_RESOURCE_DIR=${CLANG_RESOURCE_DIR}")
+ foreach(proj ${LLVM_ENABLE_RUNTIMES})
+   set(proj_dir "${CMAKE_CURRENT_SOURCE_DIR}/../../${proj}")
+   if(IS_DIRECTORY ${proj_dir} AND EXISTS ${proj_dir}/CMakeLists.txt)
