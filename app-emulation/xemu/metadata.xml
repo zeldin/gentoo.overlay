@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+        <herd>no-herd</herd>
+        <maintainer>
+                <email>marcus@mc.pp.se</email>
+                <name>Marcus Comstedt</name>
+        </maintainer>
+        <use>
+                <flag name="target-c65">Commodore 65 target</flag>
+                <flag name="target-cgeos">Commodore GEOS target [EXPERIMENTAL]</flag>
+                <flag name="target-clcd">Commodore LCD target</flag>
+                <flag name="target-cvic20">Commodore VIC20 target [EXPERIMENTAL]</flag>
+                <flag name="target-cx16">Commander X16 target [EXPERIMENTAL]</flag>
+		<flag name="target-ep128">Enterprise 128 target</flag>
+                <flag name="target-mega65">MEGA65 target</flag>
+                <flag name="target-primo">Primo target</flag>
+                <flag name="target-tvc">Videoton TV Computer target</flag>
+        </use>
+</pkgmetadata>
