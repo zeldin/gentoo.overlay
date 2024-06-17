@@ -26,6 +26,12 @@ src_configure() {
       -DCMAKE_INSTALL_MANDIR="${EPREFIX}/usr/lib/llvm-mos/share/man"
       -DBUILD_SHARED_LIBS=OFF
    )
+   if [ -d .git ]; then
+     mycmakeargs+=(
+       -DLLVM_FORCE_VC_REPOSITORY="${EGIT_REPO_URI}"
+       -DLLVM_FORCE_VC_REVISION="$(git rev-parse HEAD)"
+     )
+   fi
    cmake_src_configure
 }
 
