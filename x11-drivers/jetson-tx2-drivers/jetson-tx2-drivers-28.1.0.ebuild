@@ -1,6 +1,6 @@
 EAPI=6
 
-inherit versionator eutils
+inherit versionator
 
 DESCRIPTION="NVIDIA Jetson TX2 Accelerated Graphics Driver"
 HOMEPAGE="https://developer.nvidia.com/embedded/linux-tegra"
