@@ -1,7 +1,5 @@
 EAPI=6
 
-inherit eutils
-
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/YosysHQ/yosys.git"
 	inherit git-r3

@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit eutils
+inherit toolchain-funcs
 
 DESCRIPTION="Electronic Japanese-English Dictionary Program"
 HOMEPAGE="http://www.csse.monash.edu.au/~jwb/xjdic/"

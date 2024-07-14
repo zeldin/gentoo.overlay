@@ -1,7 +1,5 @@
 EAPI=6
 
-inherit eutils
-
 SRC_URI="https://github.com/cliffordwolf/yosys/archive/${P}.tar.gz"
 S="${WORKDIR}/${PN}-${P}"
 KEYWORDS="~ppc ~arm64"
