@@ -1,4 +1,4 @@
-EAPI=6
+EAPI=7
 
 EGIT_REPO_URI="https://github.com/cseed/arachne-pnr.git"
 inherit git-r3

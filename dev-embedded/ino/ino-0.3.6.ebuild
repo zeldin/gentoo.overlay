@@ -1,4 +1,4 @@
-EAPI=6
+EAPI=7
 
 PYTHON_COMPAT=( python2_7 )
 
