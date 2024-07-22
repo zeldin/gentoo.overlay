@@ -38,6 +38,7 @@ src_unpack() {
 		fi
 	else
 		default_src_unpack
+		use abc && test -d ${S}/abc && rmdir ${S}/abc
 		use abc && mv ${WORKDIR}/*abc-* ${S}/abc
 	fi
 }
