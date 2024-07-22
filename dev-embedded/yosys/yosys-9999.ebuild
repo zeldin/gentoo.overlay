@@ -26,16 +26,7 @@ DEPEND="clang? ( sys-devel/clang )
 src_unpack() {
 	if [[ ${PV} = *9999* ]]; then
 		git-r3_src_unpack
-		if use abc; then
-			cd ${S} || die
-			local ABCURL=$(sed -ne '/^ABCURL/s/^.*=//p;T;q' < Makefile)
-			local ABCREV=$(sed -ne '/^ABCREV/s/^.*=//p;T;q' < Makefile)
-			git clone ${ABCURL} abc || die
-			cd abc || die
-			ABCREV=${ABCREV//[[:space:]]}
-			git config --local core.abbrev ${#ABCREV} || die
-			git checkout ${ABCREV} || die
-		fi
+		use abc && git -C ${S} submodule init
 	else
 		default_src_unpack
 		use abc && test -d ${S}/abc && rmdir ${S}/abc
