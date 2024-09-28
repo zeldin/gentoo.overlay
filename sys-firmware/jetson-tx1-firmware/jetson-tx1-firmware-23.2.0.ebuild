@@ -1,11 +1,9 @@
 EAPI=7
 
-inherit versionator
-
 DESCRIPTION="NVIDIA Jetson TX1 firmware package"
 HOMEPAGE="https://developer.nvidia.com/embedded/linux-tegra"
 MY_P="Tegra210_Linux_R${PV}"
-SRC_URI="http://developer.download.nvidia.com/embedded/L4T/r$(get_major_version)_Release_v$(get_after_major_version)/${MY_P}_armhf.tbz2"
+SRC_URI="http://developer.download.nvidia.com/embedded/L4T/r$(ver_cut 1)_Release_v$(ver_cut 2-)/${MY_P}_armhf.tbz2"
 
 SLOT="0"
 KEYWORDS="-* arm arm64"

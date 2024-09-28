@@ -1,11 +1,9 @@
 EAPI=7
 
-inherit versionator
-
 DESCRIPTION="NVIDIA Jetson TX2 Accelerated Graphics Driver"
 HOMEPAGE="https://developer.nvidia.com/embedded/linux-tegra"
 MY_P="Tegra186_Linux_R${PV}"
-SRC_URI="http://developer.download.nvidia.com/embedded/L4T/r$(get_major_version)_Release_v$(get_after_major_version)/t186ref_release_aarch64/${MY_P}_aarch64.tbz2"
+SRC_URI="http://developer.download.nvidia.com/embedded/L4T/r$(ver_cut 1)_Release_v$(ver_cut 2-)/t186ref_release_aarch64/${MY_P}_aarch64.tbz2"
 
 SLOT="0"
 KEYWORDS="-* arm64"
