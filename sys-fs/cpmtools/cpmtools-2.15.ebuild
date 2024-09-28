@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header$
 
-EAPI=6
+EAPI=7
 
 SRC_URI="http://www.moria.de/~michael/cpmtools/cpmtools-${PV}.tar.gz"
 

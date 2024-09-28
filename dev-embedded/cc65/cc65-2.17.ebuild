@@ -1,4 +1,4 @@
-EAPI=6
+EAPI=7
 
 DESCRIPTION="complete cross development package for 65(C)02 systems"
 HOMEPAGE="https://cc65.github.io/cc65/"
