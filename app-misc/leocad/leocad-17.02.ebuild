@@ -16,13 +16,11 @@ HOMEPAGE="http://www.leocad.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="+qt4 qt5 jpeg png zlib"
-REQUIRED_USE="^^ ( qt4 qt5 )"
+IUSE="jpeg png zlib"
 
 S="${WORKDIR}/${P}"
 
-RDEPEND="qt4? ( dev-qt/qtcore:4 )
-	qt5? ( dev-qt/qtcore:5 )
+RDEPEND="dev-qt/qtcore:5
 	media-libs/mesa
 	jpeg? ( virtual/jpeg )
 	png? ( media-libs/libpng:0 )
@@ -33,8 +31,7 @@ DEPEND="${RDEPEND}
 
 src_configure() {
 	local qmake_args=(DOCS_DIR=/usr/share/doc/"${P}")
-        use qt4 && eqmake4 "${qmake_args[@]}"
-        use qt5 && eqmake5 "${qmake_args[@]}"
+        eqmake5 "${qmake_args[@]}"
 }
 
 src_install() {
