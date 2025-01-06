@@ -16,7 +16,7 @@ IUSE=""
 RDEPEND="${PYTHON_DEPS}
 	dev-embedded/arduino
 	net-dialup/picocom
-	>=dev-python/jinja-2[${PYTHON_USEDEP}]
+	>=dev-python/jinja2-2[${PYTHON_USEDEP}]
 	dev-python/pyserial[${PYTHON_USEDEP}]
 	dev-python/configobj[${PYTHON_USEDEP}]
 
