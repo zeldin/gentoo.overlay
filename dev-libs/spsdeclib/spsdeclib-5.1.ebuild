@@ -4,7 +4,7 @@
 
 EAPI=7
 
-inherit eutils unpacker flag-o-matic multilib
+inherit unpacker flag-o-matic multilib-minimal
 
 DESCRIPTION="A library to decode IPF files"
 HOMEPAGE="http://www.kryoflux.com/"
@@ -30,9 +30,7 @@ src_unpack() {
 }
 
 src_prepare() {
-	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
-	debug-print "$FUNCNAME: applying user patches"
-	epatch_user
+	default
 	chmod +x CAPSImg/configure
 	multilib_copy_sources
 }
@@ -56,7 +54,7 @@ multilib_src_install() {
 	insinto /usr/$(get_libdir)/pkgconfig
 	doins libcapsimage.pc
 	into /usr
-	dolib CAPSImg/libcapsimage.so.${PV}
+	dolib.so CAPSImg/libcapsimage.so.${PV}
 	dosym libcapsimage.so.${PV} /usr/$(get_libdir)/libcapsimage.so
 	dosym libcapsimage.so.${PV} /usr/$(get_libdir)/libcapsimage.so.${PV%%.*}
 	insinto /usr/include/CAPSImg
