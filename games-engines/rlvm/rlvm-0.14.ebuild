@@ -1,8 +1,8 @@
 EAPI=7
 
-PYTHON_COMPAT=( python3_{8..11} )
+PYTHON_COMPAT=( python3_{8..13} )
 
-inherit eutils python-any-r1 scons-utils toolchain-funcs gnome2-utils
+inherit python-any-r1 scons-utils toolchain-funcs gnome2-utils
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/eglaysher/${PN}.git"
@@ -42,16 +42,15 @@ RDEPEND="media-fonts/monafont[truetype]
 
 DEPEND="$RDEPEND dev-util/pkgconf"
 
-src_prepare() {
-      epatch "${FILESDIR}"/fontpath.patch
-      epatch "${FILESDIR}"/iostream.patch
-      epatch "${FILESDIR}"/memory.patch
-      epatch "${FILESDIR}"/luabind.patch
-      epatch "${FILESDIR}"/cerr.patch
-      epatch "${FILESDIR}"/freetype.patch
-      epatch "${FILESDIR}"/python2.patch
-      eapply_user
-}
+PATCHES=(
+	"${FILESDIR}"/fontpath.patch
+	"${FILESDIR}"/iostream.patch
+	"${FILESDIR}"/memory.patch
+	"${FILESDIR}"/luabind.patch
+	"${FILESDIR}"/cerr.patch
+	"${FILESDIR}"/freetype.patch
+	"${FILESDIR}"/python2.patch
+)
 
 src_configure() {
       MYSCONS=(
