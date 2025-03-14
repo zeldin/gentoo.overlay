@@ -2,9 +2,9 @@ EAPI=7
 
 WX_GTK_VER=3.2-gtk3
 
-inherit subversion wxwidgets
+inherit git-r3 wxwidgets
 
-ESVN_REPO_URI="https://svn.icomp.de/svn/chaco"
+EGIT_REPO_URI="https://gitlab.icomp.de/chameleon-dev/chaco.git"
 
 SLOT="0"
 KEYWORDS="~ppc64 ~arm64"
