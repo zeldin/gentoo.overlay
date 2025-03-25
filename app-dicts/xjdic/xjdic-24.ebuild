@@ -8,7 +8,7 @@ inherit toolchain-funcs
 
 DESCRIPTION="Electronic Japanese-English Dictionary Program"
 HOMEPAGE="http://www.csse.monash.edu.au/~jwb/xjdic/"
-SRC_URI="http://ftp.monash.edu.au/pub/nihongo/xjdic24.tgz"
+SRC_URI="http://ftp.edrdg.org/pub/Nihongo/xjdic24.tgz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 x86"
