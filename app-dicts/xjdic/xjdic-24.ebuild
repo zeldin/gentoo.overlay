@@ -15,7 +15,8 @@ KEYWORDS="amd64 x86"
 PDEPEND="app-dicts/kanjidic app-dicts/edict"
 
 PATCHES=( "${FILESDIR}/${P}.patch" "${FILESDIR}/${P}-termios.patch"
-          "${FILESDIR}/${PN}-fix-reply-overrun.patch" )
+          "${FILESDIR}/${PN}-fix-reply-overrun.patch" "${FILESDIR}/main.patch"
+          "${FILESDIR}/missing-function-declarations.patch" )
 
 S="${WORKDIR}"
 

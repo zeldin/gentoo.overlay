@@ -1,0 +1,58 @@
+diff -u xjdic-24/xjdclient.c xjdic-24/xjdclient.c
+--- xjdic-24/xjdclient.c
++++ xjdic-24/xjdclient.c
+@@ -32,6 +32,7 @@
+ #include <sys/socket.h>
+ #include <netinet/in.h>
+ #include <netdb.h>
++#include <arpa/inet.h>
+ #include <sys/stat.h>
+ #include <sys/time.h>
+ #include <stdlib.h>
+diff -u xjdic-24/xjdfrontend.c xjdic-24/xjdfrontend.c
+--- xjdic-24/xjdfrontend.c
++++ xjdic-24/xjdfrontend.c
+@@ -196,7 +196,6 @@
+ void RadSet();
+ void Verbtoggle();
+ void FiltSet();
+-void xjdicrc();
+ void DoRADICALS();
+ int Vlookup();
+ void AppKanji(unsigned char c1,unsigned char c2);
+diff -u xjdic-24/xjdic.h xjdic-24/xjdic.h
+--- xjdic-24/xjdic.h
++++ xjdic-24/xjdic.h
+@@ -71,3 +71,7 @@
+ 	long	xjdrsp_dicloc;
+ 	unsigned char	xjdrsp_resstr[512];
+ 	} RSP_PDU;
++
++void EMtoggle();
++void xjdicrc();
++unsigned char dbchar(unsigned long xit);
+diff -u xjdic-24/xjdsa.c xjdic-24/xjdsa.c
+--- xjdic-24/xjdsa.c
++++ xjdic-24/xjdsa.c
+@@ -30,6 +30,8 @@
+ #include <signal.h>
+ #include "xjdic.h"
+
++int Kstrcmp(int klen,unsigned char *str1);
++unsigned long jindex(unsigned long xit);
+ unsigned char Dnamet[10][100],XJDXnamet[10][100];
+ unsigned char CBname[100];
+ unsigned char *dicbufft[10];
+diff -u xjdic-24/xjdserver.c xjdic-24/xjdserver.c
+--- xjdic-24/xjdserver.c
++++ xjdic-24/xjdserver.c
+@@ -36,7 +36,9 @@
+
+ void xjdicrc();
+ void DicSet ();
++int Kstrcmp(int klen,unsigned char *str1);
+ unsigned char *DicName(int dn);
++unsigned long jindex(unsigned long xit);
+
+ int portno=XJ_PORTNO;
+ int DontFork = FALSE;

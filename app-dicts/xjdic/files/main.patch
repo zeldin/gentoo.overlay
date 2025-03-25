@@ -1,0 +1,101 @@
+Index: xjdic-24/xjdfrontend.c
+===================================================================
+--- xjdic-24.orig/xjdfrontend.c	2024-08-21 21:57:36.200831430 +0200
++++ xjdic-24/xjdfrontend.c	2024-08-21 21:57:36.192831416 +0200
+@@ -2598,10 +2598,7 @@
+ 
+ /*                  M A I N                                      */
+ 
+-main(argc,argv)
+-int argc;
+-unsigned char **argv;
+-
++int main(int argc,char **argv)
+ {
+ 	int i,j,ip,cmdmode,bit8,escf;
+   	unsigned char *dicenv,strtmp[50];
+Index: xjdic-24/xjdserver.c
+===================================================================
+--- xjdic-24.orig/xjdserver.c	2024-08-21 21:57:36.168831370 +0200
++++ xjdic-24/xjdserver.c	2024-08-21 21:58:26.984927600 +0200
+@@ -144,7 +144,7 @@
+ 
+ /*                  M A I N                                      */
+ 
+-main(argc,argv)
++int main(argc,argv)
+ int argc;
+ char **argv;
+ 
+Index: xjdic-24/xjdxgen.c
+===================================================================
+--- xjdic-24.orig/xjdxgen.c	2024-08-21 21:57:36.136831309 +0200
++++ xjdic-24/xjdxgen.c	2024-08-21 22:00:22.221146167 +0200
+@@ -75,9 +75,7 @@
+ }
+ 
+ /*====function to Load Dictionary and load/create index table=======*/
+-main(argc,argv)
+-int argc;
+-unsigned char **argv;
++int main(int argc, char **argv)
+ {
+   FILE *fp,*fopen();
+   unsigned long possav,schi,diclen,indlen;
+@@ -83,7 +83,7 @@
+   int arg_c;
+   unsigned char c;
+   unsigned char currstr[TOKENLIM],strtmp[50];
+-  unsigned char **ap;
++  char **ap;
+ 
+   printf("\nXJDXGEN V2.4 Index Table Generator for XJDIC. \n      Copyright J.W. Breen, 2003\n");
+   ap = argv;
+Index: xjdic-24/exjdxgen.c
+===================================================================
+--- xjdic-24.orig/exjdxgen.c	2024-08-21 21:57:36.164831363 +0200
++++ xjdic-24/exjdxgen.c	2024-08-21 22:02:31.537391949 +0200
+@@ -66,15 +66,13 @@
+ }
+ 
+ /*====function to Load Dictionary and load/create index table=======*/
+-main(argc,argv)
+-int argc;
+-unsigned char **argv;
++int main(int argc, char **argv)
+ {
+   FILE *fp,*fopen();
+   unsigned long schi,diclen,indlen;
+   int i,inwd,saving,nodread;
+   unsigned char c;
+-  unsigned char **ap;
++  char **ap;
+ 
+   printf("\nEXJDXGEN V2.0 Extension Index Table Generator for XJDIC. \n      Copyright J.W. Breen, 1995\n");
+   if (argc > 1)
+Index: xjdic-24/xjdrad.c
+===================================================================
+--- xjdic-24.orig/xjdrad.c	2024-08-21 21:57:36.136831309 +0200
++++ xjdic-24/xjdrad.c	2024-08-21 22:03:56.989554668 +0200
+@@ -210,7 +210,7 @@
+ 
+ /*                  M A I N                                      */
+ 
+-main()
++int main()
+ {
+ 	int i,j;
+   	unsigned char *dicenv,strtmp[50];
+Index: xjdic-24/makekanjstroke.c
+===================================================================
+--- xjdic-24.orig/makekanjstroke.c	1996-01-20 06:38:30.000000000 +0100
++++ xjdic-24/makekanjstroke.c	2024-08-21 22:04:52.937661318 +0200
+@@ -6,7 +6,7 @@
+ unsigned char instr[1000],*ptr;
+ int i;
+ 
+-main()
++int main()
+ {
+ 	fo = fopen("kanjstroke","w");
+ 	if (fo == NULL)
