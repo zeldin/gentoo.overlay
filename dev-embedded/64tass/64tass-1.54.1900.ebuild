@@ -2,7 +2,7 @@ EAPI=7
 
 DESCRIPTION="Multi pass optimizing macro assembler for the 65xx series of processors"
 HOMEPAGE="https://sourceforge.net/projects/tass64/"
-SRC_URI="mirror://sourceforge/tass64/${P}-src.zip"
+SRC_URI="https://downloads.sourceforge.net/tass64/${P}-src.zip"
 
 LICENSE="GPL-2+"
 SLOT="0" 

@@ -17,8 +17,8 @@ fi
 SRC_URI+="
 	https://github.com/pxb1988/dex2jar/releases/download/2.0/dex-tools-2.0.zip
    	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/android4me/AXMLPrinter2.jar
-        mirror://sourceforge/catacombae/hfsexplorer-0_21-bin.zip
-	mirror://sourceforge/yajsw/yajsw-stable-12.12.zip
+        https://downloads.sourceforge.net/catacombae/hfsexplorer-0_21-bin.zip
+	https://downloads.sourceforge.net/yajsw/yajsw-stable-12.12.zip
 	https://services.gradle.org/distributions/gradle-5.0-bin.zip
 "
 
