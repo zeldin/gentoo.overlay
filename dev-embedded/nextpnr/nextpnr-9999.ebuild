@@ -41,6 +41,8 @@ pkg_setup() {
 
 src_configure() {
 
+        sed -i -e '/^add_subdirectory(tests\/gui)$/d' ${S}/CMakeLists.txt
+
         local arches=()
         use ecp5 && arches+=( ecp5 )
         use generic && arches+=( generic )
