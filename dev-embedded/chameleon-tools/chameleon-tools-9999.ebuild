@@ -12,10 +12,11 @@ IUSE=""
 
 DEPEND=">=dev-embedded/cc65-1.7
         dev-embedded/64tass
+	x11-libs/wxGTK:${WX_GTK_VER}[X]
 	app-arch/zip
 	app-arch/unzip
 	media-gfx/imagemagick"
-REPEND=""
+REPEND="x11-libs/wxGTK:${WX_GTK_VER}[X]"
 
 pkg_setup() {
     setup-wxwidgets
