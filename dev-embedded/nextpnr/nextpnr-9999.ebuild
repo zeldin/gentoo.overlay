@@ -22,7 +22,7 @@ REQUIRED_USE="|| ( ecp5 generic ice40 )
              gui? ( python )
              ${PYTHON_REQUIRED_USE}"
 
-RDEPEND="gui? ( dev-qt/qtgui:5 )
+RDEPEND="gui? ( dev-qt/qtgui:5 dev-qt/qtopengl:5 )
          python? ( ${PYTHON_DEPS} )
          dev-libs/boost
          dev-cpp/eigen:3[openmp?]
