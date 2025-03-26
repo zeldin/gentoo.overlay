@@ -2,11 +2,11 @@ EAPI=7
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit distutils-r1
+inherit distutils-r1 pypi
 
 DESCRIPTION="Command line toolkit for working with Arduino hardware"
 HOMEPAGE="http://http://inotool.org/"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
+SRC_URI="$(pypi_sdist_url ${PN^} ${PV})"
 
 LICENSE="MIT"
 SLOT="0"

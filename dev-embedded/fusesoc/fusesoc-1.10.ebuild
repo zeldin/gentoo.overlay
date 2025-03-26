@@ -2,11 +2,11 @@ EAPI=7
 
 PYTHON_COMPAT=( python3_{5,6,7,8,9,10,11,12} )
 
-inherit distutils-r1
+inherit distutils-r1 pypi
 
 DESCRIPTION="Package manager and build abstraction tool for FPGA/ASIC development"
 HOMEPAGE="http://github.com/olofk/fusesoc"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
+SRC_URI="$(pypi_sdist_url ${PN^} ${PV})"
 
 LICENSE="GPL-3"
 SLOT="0"

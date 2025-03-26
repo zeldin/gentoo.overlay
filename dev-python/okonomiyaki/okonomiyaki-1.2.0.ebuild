@@ -2,11 +2,11 @@ EAPI=7
 
 PYTHON_COMPAT=( python3_{5,6,7,8,9,10,11,12} )
 
-inherit distutils-r1
+inherit distutils-r1 pypi
 
 DESCRIPTION="Self-contained library to deal with metadata in Enthought-specific eggs"
 HOMEPAGE="https://github.com/enthought/okonomiyaki"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
+SRC_URI="$(pypi_sdist_url ${PN^} ${PV})"
 
 LICENSE="BSD"
 SLOT="0"
