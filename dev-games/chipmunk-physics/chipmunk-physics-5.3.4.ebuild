@@ -17,6 +17,8 @@ LICENSE="MIT"
 SLOT="0"
 IUSE=""
 
+PATCHES=( "${FILESDIR}/link_libm.patch" )
+
 S="${WORKDIR}/Chipmunk-${PV}"
 
 RDEPEND=""

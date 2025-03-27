@@ -1,0 +1,11 @@
+--- Chipmunk-5.3.4/Demo/CMakeLists.txt.orig	2025-03-27 15:53:34.324366629 +0100
++++ Chipmunk-5.3.4/Demo/CMakeLists.txt	2025-03-27 15:53:47.096595896 +0100
+@@ -17,7 +17,7 @@
+ 
+ include_directories(${chipmunk_demos_include_dirs})
+ add_executable(chipmunk_demos ${chipmunk_demos_source_files})
+-target_link_libraries(chipmunk_demos ${chipmunk_demos_libraries})
++target_link_libraries(chipmunk_demos ${chipmunk_demos_libraries} m)
+ 
+ if(INSTALL_DEMOS)
+   install(TARGETS chipmunk_demos RUNTIME DESTINATION bin)
