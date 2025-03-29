@@ -1,0 +1,35 @@
+#!/sbin/openrc-run
+
+depend() {
+	after procfs
+}
+
+start() {
+	ebegin "Registering tango binary translator"
+
+	if [ ! -d /proc/sys/fs/binfmt_misc ] ; then
+		modprobe -q binfmt_misc
+	fi
+
+	if [ ! -d /proc/sys/fs/binfmt_misc ] ; then
+		eend 1 "You need support for 'misc binaries' in your kernel!"
+		return
+	fi
+
+	if [ ! -f /proc/sys/fs/binfmt_misc/register ] ; then
+		mount -t binfmt_misc -o nodev,noexec,nosuid \
+			binfmt_misc /proc/sys/fs/binfmt_misc >/dev/null 2>&1
+		eend $? || return
+	fi
+
+	cat /usr/share/tango/binfmt.conf >/proc/sys/fs/binfmt_misc/register
+	eend 0
+}
+
+stop() {
+	ebegin "Unregistering tango binary translator"
+	if [ -f /proc/sys/fs/binfmt_misc/tango_translator ]; then
+		echo '-1' > /proc/sys/fs/binfmt_misc/tango_translator
+	fi
+	eend 0
+}
