@@ -22,6 +22,10 @@ CMAKE_BUILD_TYPE="MinSizeRel"
 PATCHES=( "${FILESDIR}"/symlink-destdir.patch )
 
 src_configure() {
+  local clang_libdir=$(mos-clang -print-resource-dir | sed -ne 's:^.*/llvm-mos/::p')
+  if [ -n "${clang_libdir}" ]; then
+    sed -i -e 's;lib/clang/20;'"${clang_libdir}"';' "${S}/mos-platform/common/crt/CMakeLists.txt"
+  fi
   local mycmakeargs=(
       -DCMAKE_INSTALL_PREFIX="${EPREFIX}/usr/lib/llvm-mos"
       -DBUILD_SHARED_LIBS=OFF
