@@ -1,6 +1,7 @@
 EAPI=7
 
 PYTHON_COMPAT=( python2_7 )
+DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1 pypi
 
