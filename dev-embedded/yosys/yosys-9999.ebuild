@@ -6,9 +6,21 @@ if [[ ${PV} = *9999* ]]; then
 	SRC_URI=""
 	KEYWORDS=""
 else
-	SRC_URI="https://github.com/YosysHQ/yosys/archive/${P}.tar.gz
-		 abc? ( https://github.com/YosysHQ/yosys/releases/download/${P}/abc.tar.gz -> ${PN}-abc-${PV}.tar.gz )"
-	S="${WORKDIR}/${PN}-${P}"
+	if ver_test -ge 0.48; then
+	  MY_P=v${PV}
+	elif ver_test -ge 0.45; then
+	  MY_P=${PV}
+	else
+	  MY_P=${P}
+	fi
+	if ver_test -ge 0.51; then
+	  SRC_URI="https://github.com/YosysHQ/yosys/releases/download/${MY_P}/yosys.tar.gz -> yosys-${PV}.tar.gz"
+	  S="${WORKDIR}"
+	else
+	  SRC_URI="https://github.com/YosysHQ/yosys/archive/refs/tags/${MY_P}.tar.gz
+	           abc? ( https://github.com/YosysHQ/yosys/releases/download/${MY_P}/abc.tar.gz -> ${PN}-abc-${PV}.tar.gz )"
+	  S="${WORKDIR}/${PN}-${P}"
+	fi
 	KEYWORDS="~ppc64 ~arm64"
 fi
 
@@ -29,8 +41,10 @@ src_unpack() {
 		use abc && git -C ${S} submodule init
 	else
 		default_src_unpack
-		use abc && test -d ${S}/abc && rmdir ${S}/abc
-		use abc && mv ${WORKDIR}/*abc-* ${S}/abc
+		if ver_test -lt 0.51; then
+		  use abc && test -d ${S}/abc && rmdir ${S}/abc
+		  use abc && mv ${WORKDIR}/*abc-* ${S}/abc
+		fi
 	fi
 }
 
