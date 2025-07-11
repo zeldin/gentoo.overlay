@@ -1,4 +1,4 @@
-EAPI=7
+EAPI=8
 
 WX_GTK_VER=3.2-gtk3
 

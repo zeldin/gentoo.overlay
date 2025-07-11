@@ -1,4 +1,4 @@
-EAPI=7
+EAPI=8
 
 SRC_URI="https://github.com/cliffordwolf/yosys/archive/${P}.tar.gz"
 S="${WORKDIR}/${PN}-${P}"

@@ -1,4 +1,4 @@
-EAPI=7
+EAPI=8
 
 DESCRIPTION="Multi pass optimizing macro assembler for the 65xx series of processors"
 HOMEPAGE="https://sourceforge.net/projects/tass64/"

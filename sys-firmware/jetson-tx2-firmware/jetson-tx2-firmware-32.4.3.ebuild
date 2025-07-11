@@ -1,4 +1,4 @@
-EAPI=7
+EAPI=8
 
 DESCRIPTION="NVIDIA Jetson TX2 firmware package"
 HOMEPAGE="https://developer.nvidia.com/embedded/linux-tegra"

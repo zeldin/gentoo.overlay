@@ -1,4 +1,4 @@
-EAPI=7
+EAPI=8
 DESCRIPTION="Dictionary for xjdic"
 URI="http://ftp.edrdg.org/pub/Nihongo/${PN}.gz"
 LICENSE="CC-BY-SA-3.0"

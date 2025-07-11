@@ -1,4 +1,4 @@
-EAPI=7
+EAPI=8
 
 DESCRPTION="Metamail replacement using mutt"
 SRC_URI="https://www.spinnaker.de/mutt/metamutt -> ${P}"

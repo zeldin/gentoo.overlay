@@ -1,4 +1,4 @@
-EAPI=7
+EAPI=8
 
 DESCRPTION="Ansi HTML Adapter"
 SRC_URI="https://github.com/theZiz/${PN}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"

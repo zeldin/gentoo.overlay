@@ -1,4 +1,4 @@
-EAPI=7
+EAPI=8
 
 PYTHON_COMPAT=( python2_7 )
 DISTUTILS_USE_PEP517=setuptools
