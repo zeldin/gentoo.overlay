@@ -1,6 +1,6 @@
 EAPI=8
 
-PYTHON_COMPAT=( python3_{5,6,7,8,9,10,11,12} )
+PYTHON_COMPAT=( python3_{5,6,7,8,9,10,11,12,13} )
 CMAKE_IN_SOURCE_BUILD="1"
 inherit cmake python-single-r1
 
