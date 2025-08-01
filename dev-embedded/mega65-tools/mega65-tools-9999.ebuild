@@ -14,11 +14,13 @@ KEYWORDS=""
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="static system-cc65"
+IUSE="static system-cc65 vnc"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-RDEPEND="${PYTHON_DEPS} !static? ( sys-libs/ncurses sys-libs/readline )"
+RDEPEND="${PYTHON_DEPS}
+	!static? ( sys-libs/ncurses sys-libs/readline )
+	vnc? ( net-libs/libpcap net-libs/libvncserver )"
 DEPEND="${RDEPEND}
         static? ( sys-libs/ncurses[static-libs]
 		  sys-libs/readline[static-libs] )"
@@ -30,7 +32,7 @@ src_prepare() {
 }
 
 src_compile() {
-	emake DO_STATIC=$(usex static 1 0) $(usex system-cc65 USE_LOCAL_CC65=1 "") DO_SMU=0
+	emake DO_STATIC=$(usex static 1 0) $(usex system-cc65 USE_LOCAL_CC65=1 "") DO_SMU=0 all $(usex vnc "bin/vncserver bin/videoproxy" "")
 }
 
 src_install() {
@@ -41,4 +43,8 @@ src_install() {
 	dobin bin/bit2mcs
 	dobin bin/romdiff
 	python_newexe bin/coretool coretool
+	if use vnc; then
+		newbin bin/vncserver m65_vncserver
+		newbin bin/videoproxy m65_videoproxy
+	fi
 }
