@@ -12,7 +12,7 @@ LICENSE="Apache-2.0-with-LLVM-exceptions"
 SLOT="0"
 IUSE=""
 
-RDEPEND="dev-embedded/llvm-mos"
+RDEPEND="~dev-embedded/llvm-mos-${PV}"
 DEPEND="${RDEPEND}"
 
 RESTRICT="strip binchecks"
