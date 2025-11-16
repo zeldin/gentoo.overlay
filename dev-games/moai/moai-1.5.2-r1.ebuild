@@ -22,7 +22,9 @@ SLOT="0"
 PATCHES=("${FILESDIR}"/curl-sizeof-long.patch
 	 "${FILESDIR}"/rgba-endian.patch
 	 "${FILESDIR}"/curl-stropts.patch
-	 "${FILESDIR}"/sysctl.patch)
+	 "${FILESDIR}"/sysctl.patch
+	 "${FILESDIR}"/gldebugprocarb.patch
+	 "${FILESDIR}"/sqlite.patch)
 
 CMAKE_USE_DIR="${S}/cmake"
 
@@ -41,7 +43,7 @@ RDEPEND="!luajit? ( >=dev-lang/lua-5.1.3 )
 	png? ( media-libs/libpng:0 )
 	vorbis? ( >=media-libs/libvorbis-1.3.2 )
 	virtual/opengl
-	media-sound/pulseaudio
+	media-libs/libpulse
 	curl? ( >=net-misc/curl-7.19.7 )
 	sqlite? ( dev-db/sqlite:3 )"
 

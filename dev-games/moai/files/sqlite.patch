@@ -1,0 +1,11 @@
+--- moai-dev-Version-1.5.2/3rdparty/luasql-2.2.0/src/ls_sqlite3.c.orig	2025-11-16 22:14:21.491416779 +0100
++++ moai-dev-Version-1.5.2/3rdparty/luasql-2.2.0/src/ls_sqlite3.c	2025-11-16 22:14:32.558077808 +0100
+@@ -551,7 +551,7 @@ static int opts_settimeout  (lua_State *
+ {
+ 	conn_data *conn = getconnection(L);
+ 	int milisseconds = luaL_checknumber(L, 2);
+-	lua_pushnumber(L, sqlite3_busy_timeout(conn, milisseconds));
++	lua_pushnumber(L, sqlite3_busy_timeout(conn->sql_conn, milisseconds));
+ 	return 1;
+ }
+ 

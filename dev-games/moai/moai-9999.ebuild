@@ -37,7 +37,7 @@ RDEPEND="!luajit? ( >=dev-lang/lua-5.1.3 )
 	media-libs/libpng:0
 	>=media-libs/libvorbis-1.3.2
 	virtual/opengl
-	media-sound/pulseaudio
+	media-libs/libpulse
 	>=net-misc/curl-7.19.7"
 
 DEPEND="${RDEPEND}
