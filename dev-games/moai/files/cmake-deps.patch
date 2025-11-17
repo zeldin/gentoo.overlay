@@ -1,0 +1,55 @@
+--- moai-dev-Version-1.5.2/cmake/third-party/luaext/luasql/CMakeLists.txt.orig	2025-11-17 10:50:43.593526328 +0100
++++ moai-dev-Version-1.5.2/cmake/third-party/luaext/luasql/CMakeLists.txt	2025-11-17 10:50:43.593526328 +0100
+@@ -8,7 +8,7 @@
+ 
+  add_library (luasql STATIC ${LUAEXT_SOURCES})
+  target_link_libraries ( luasql sqlite3 ${LUA_LIB} )
+- add_dependencies ( luasql lualib-static)
++ add_dependencies ( luasql liblua-static)
+ set_target_properties( luasql PROPERTIES FOLDER Third-Party )
+ 
+  target_include_directories ( luasql PUBLIC ${LUA_HEADERS})
+\ No newline at end of file
+--- moai-dev-Version-1.5.2/cmake/third-party/luaext/luasocket/CMakeLists.txt.orig	2025-11-17 10:50:43.597525847 +0100
++++ moai-dev-Version-1.5.2/cmake/third-party/luaext/luasocket/CMakeLists.txt	2025-11-17 10:50:43.597525847 +0100
+@@ -29,7 +29,7 @@ project ( luasocket )
+   target_link_libraries ( luasocket ${LUA_LIB} )
+ 
+   target_include_directories ( luasocket PUBLIC ${LUA_HEADERS})
+-  add_dependencies ( luasocket lualib-static)
++  add_dependencies ( luasocket liblua-static)
+   set_target_properties( luasocket PROPERTIES FOLDER Third-Party )
+ 
+    if ( BUILD_WINDOWS )
+--- moai-dev-Version-1.5.2/cmake/third-party/luaext/luafilesystem/CMakeLists.txt.orig	2025-11-17 10:50:43.597525847 +0100
++++ moai-dev-Version-1.5.2/cmake/third-party/luaext/luafilesystem/CMakeLists.txt	2025-11-17 10:50:43.601525367 +0100
+@@ -6,6 +6,6 @@
+ 
+  add_library (luafilesystem STATIC ${LUAEXT_SOURCES})
+  target_link_libraries ( luafilesystem ${LUA_LIB} )
+- add_dependencies ( luafilesystem lualib-static)
++ add_dependencies ( luafilesystem liblua-static)
+  target_include_directories ( luafilesystem PUBLIC ${LUA_HEADERS})
+  set_target_properties( luafilesystem PROPERTIES FOLDER Third-Party )
+\ No newline at end of file
+--- moai-dev-Version-1.5.2/cmake/third-party/luaext/luacurl/CMakeLists.txt.orig	2025-11-17 10:50:43.601525367 +0100
++++ moai-dev-Version-1.5.2/cmake/third-party/luaext/luacurl/CMakeLists.txt	2025-11-17 10:50:43.605524887 +0100
+@@ -6,6 +6,6 @@
+  
+  add_library (luacurl STATIC ${LUAEXT_SOURCES})
+  target_link_libraries ( luacurl curl ${LUA_LIB} )
+- add_dependencies ( luacurl lualib-static)
++ add_dependencies ( luacurl liblua-static)
+  target_include_directories ( luacurl PUBLIC ${LUA_HEADERS})
+  set_target_properties( luacurl PROPERTIES FOLDER Third-Party )
+\ No newline at end of file
+--- moai-dev-Version-1.5.2/cmake/third-party/luaext/luacrypto/CMakeLists.txt.orig	2025-11-17 10:50:43.605524887 +0100
++++ moai-dev-Version-1.5.2/cmake/third-party/luaext/luacrypto/CMakeLists.txt	2025-11-17 10:50:43.605524887 +0100
+@@ -7,6 +7,6 @@ set ( LUAEXT_SOURCES
+ 
+ add_library (luacrypto STATIC ${LUAEXT_SOURCES})
+ target_link_libraries ( luacrypto crypto ${LUA_LIB} )
+-add_dependencies ( luacrypto lualib-static)
++add_dependencies ( luacrypto liblua-static)
+ target_include_directories ( luacrypto PUBLIC ${LUA_HEADERS})
+ set_target_properties( luacrypto PROPERTIES FOLDER Third-Party )

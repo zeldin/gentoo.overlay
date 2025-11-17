@@ -24,7 +24,8 @@ PATCHES=("${FILESDIR}"/curl-sizeof-long.patch
 	 "${FILESDIR}"/curl-stropts.patch
 	 "${FILESDIR}"/sysctl.patch
 	 "${FILESDIR}"/gldebugprocarb.patch
-	 "${FILESDIR}"/sqlite.patch)
+	 "${FILESDIR}"/sqlite.patch
+	 "${FILESDIR}"/cmake-deps.patch)
 
 CMAKE_USE_DIR="${S}/cmake"
 
