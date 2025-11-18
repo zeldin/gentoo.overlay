@@ -1,13 +1,18 @@
 EAPI=8
 
-PYTHON_COMPAT=( python3_{3,4,5,6,7,8,9,10,11,12,13} )
+PYTHON_COMPAT=( python3_{3..13} )
 
 inherit python-single-r1
 
-EGIT_REPO_URI="https://github.com/cliffordwolf/icestorm.git"
-inherit git-r3
-SRC_URI=""
-KEYWORDS=""
+if [[ ${PV} = *9999* ]]; then
+  EGIT_REPO_URI="https://github.com/YosysHQ/icestorm.git"
+  inherit git-r3
+  SRC_URI=""
+  KEYWORDS=""
+else
+  SRC_URI="https://github.com/YosysHQ/icestorm/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+  KEYWORDS="~ppc64 ~arm64"
+fi
 
 SLOT="0"
 IUSE=""
