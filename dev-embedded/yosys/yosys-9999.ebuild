@@ -61,6 +61,7 @@ src_configure() {
 		if [[ ${PV} != *9999* ]]; then
 			echo "ABCREV := default"
 		fi
+		echo "STRIP := :"
 	) > Makefile.conf
 }
 
