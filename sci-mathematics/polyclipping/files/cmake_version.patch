@@ -1,0 +1,8 @@
+--- a/cpp/CMakeLists.txt	2026-02-08 16:19:41.624818392 +0100
++++ b/cpp/CMakeLists.txt	2026-02-08 16:22:57.173116588 +0100
+@@ -1,4 +1,4 @@
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0)
++CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0...4.0.0)
+ PROJECT(polyclipping)
+ 
+ #_cmake_modify_IGNORE SET(CMAKE_BUILD_TYPE "Release" CACHE STRING "Release type")
