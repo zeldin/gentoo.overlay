@@ -1,0 +1,22 @@
+diff --git a/pri/spicedetect.pri b/pri/spicedetect.pri
+index 76795bd8..707abdbf 100644
+--- a/pri/spicedetect.pri
++++ b/pri/spicedetect.pri
+@@ -14,13 +14,12 @@
+ # ********************************************************************/
+ 
+ 
+-message("Using fritzing ngspice detect script.")
+-NGSPICEPATH = ../../ngspice-42
+-NGSPICEPATH = $$absolute_path($${NGSPICEPATH})
++message("Using customized ngspice detect script.")
++NGSPICEPATH = "/usr/include/ngspice/"
+ 
+ exists($$NGSPICEPATH) {
+-	message("found $${NGSPICEPATH}")
+-	INCLUDEPATH += $$NGSPICEPATH/include
++	message("using $${NGSPICEPATH}")
++	INCLUDEPATH += $$NGSPICEPATH
+ } else {
+     error("ngspice not found in $${NGSPICEPATH}")
+ }

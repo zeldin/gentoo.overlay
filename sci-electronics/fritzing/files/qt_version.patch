@@ -1,0 +1,13 @@
+diff --git a/phoenix.pro b/phoenix.pro
+index db96653a..4bbe8fe3 100644
+--- a/phoenix.pro
++++ b/phoenix.pro
+@@ -19,7 +19,7 @@
+ # ********************************************************************
+ 
+ QT_LEAST=6.5.3
+-QT_MOST=6.5.10
++QT_MOST=6.10.1
+ !versionAtLeast(QT_VERSION, $${QT_LEAST}):error("Use at least Qt version $${QT_LEAST}")
+ !versionAtMost(QT_VERSION, $${QT_MOST}):error("Use at most Qt version $${QT_MOST}")
+ 
