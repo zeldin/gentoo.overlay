@@ -21,6 +21,11 @@ IUSE="jpeg png zlib"
 S="${WORKDIR}/${P}"
 
 RDEPEND="dev-qt/qtcore:5
+	dev-qt/qtgui:5
+	dev-qt/qtconcurrent:5
+	dev-qt/qtprintsupport:5
+	dev-qt/qtnetwork:5
+	dev-qt/qtopengl:5
 	media-libs/mesa
 	jpeg? ( virtual/jpeg )
 	png? ( media-libs/libpng:0 )
