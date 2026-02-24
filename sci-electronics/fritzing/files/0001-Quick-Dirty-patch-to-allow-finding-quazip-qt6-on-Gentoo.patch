@@ -1,5 +1,5 @@
 diff --git a/pri/quazipdetect.pri b/pri/quazipdetect.pri
-index f8d6c525..f13c5dff 100644
+index f8d6c525..87c91f74 100644
 --- a/pri/quazipdetect.pri
 +++ b/pri/quazipdetect.pri
 @@ -1,6 +1,6 @@
@@ -39,7 +39,6 @@ index f8d6c525..f13c5dff 100644
 -macx {
 -	LIBS += -lz
 -}
-+message("including Arch's quazip library")
-+INCLUDEPATH += /usr/include/QuaZip-Qt6-1.4/
++message("including Gentoo's quazip library")
++INCLUDEPATH += /usr/include/QuaZip-Qt6-$$QUAZIP_VERSION/
 +LIBS += -lquazip1-qt6
-

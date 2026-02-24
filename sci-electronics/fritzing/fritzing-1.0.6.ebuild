@@ -31,6 +31,7 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	dev-libs/boost
+	dev-util/pkgconf
 "
 
 PATCHES=(
@@ -57,7 +58,7 @@ src_prepare() {
 }
 
 src_configure() {
-	eqmake6 'DEFINES=QUAZIP_INSTALLED PARTS_COMMIT=\\\"'"${PARTS_COMMIT}"'\\\"' phoenix.pro
+	eqmake6 'DEFINES=QUAZIP_INSTALLED PARTS_COMMIT=\\\"'"${PARTS_COMMIT}"'\\\"' QUAZIP_VERSION="$(pkg-config --modversion quazip1-qt6)" phoenix.pro
 }
 
 src_install() {
