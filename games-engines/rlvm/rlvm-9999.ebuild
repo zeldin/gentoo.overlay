@@ -1,6 +1,6 @@
 EAPI=8
 
-PYTHON_COMPAT=( python3_{8..13} )
+PYTHON_COMPAT=( python3_{8..14} )
 
 inherit python-any-r1 scons-utils toolchain-funcs gnome2-utils
 
