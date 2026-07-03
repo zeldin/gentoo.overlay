@@ -14,7 +14,11 @@ else
 	  MY_P=${P}
 	fi
 	if ver_test -ge 0.51; then
-	  SRC_URI="https://github.com/YosysHQ/yosys/releases/download/${MY_P}/yosys.tar.gz -> yosys-${PV}.tar.gz"
+	  if ver_test -ge 0.66; then
+	    SRC_URI="https://github.com/YosysHQ/yosys/releases/download/${MY_P}/yosys-src.tar.gz -> yosys-src-${PV}.tar.gz"
+	  else
+	    SRC_URI="https://github.com/YosysHQ/yosys/releases/download/${MY_P}/yosys.tar.gz -> yosys-${PV}.tar.gz"
+	  fi
 	  S="${WORKDIR}"
 	else
 	  SRC_URI="https://github.com/YosysHQ/yosys/archive/refs/tags/${MY_P}.tar.gz
