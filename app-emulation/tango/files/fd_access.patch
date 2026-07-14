@@ -1,0 +1,100 @@
+--- tango-v2.1.0-integration-package/kernel-module/tango32.c.orig	2026-07-14 22:32:35.731895779 +0200
++++ tango-v2.1.0-integration-package/kernel-module/tango32.c	2026-07-14 22:46:09.202493421 +0200
+@@ -230,7 +230,7 @@
+ 		return -EFAULT;
+ 
+ 	f = fdget(args.fd);
+-	if (!f.file)
++	if (!fd_file(f))
+ 		return -EBADF;
+ 
+ 	/*
+@@ -238,13 +238,13 @@
+ 	 */
+ 	set_32bit(true);
+ 
+-	retval = security_file_ioctl(f.file, args.cmd, args.arg);
++	retval = security_file_ioctl(fd_file(f), args.cmd, args.arg);
+ 	if (retval)
+ 		goto out;
+ 
+ 	retval = -ENOIOCTLCMD;
+-	if (f.file->f_op->compat_ioctl)
+-		retval = f.file->f_op->compat_ioctl(f.file, args.cmd, args.arg);
++	if (fd_file(f)->f_op->compat_ioctl)
++		retval = fd_file(f)->f_op->compat_ioctl(fd_file(f), args.cmd, args.arg);
+ 
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(5, 6, 0)
+ #warning "Support for kernels before v5.6 is experimental"
+@@ -253,8 +253,8 @@
+ 	 * workaround we pass the ioctls through unmodified if compat_ioctl is
+ 	 * not provided. This should work for most ioctls.
+ 	 */
+-	else if (f.file->f_op->unlocked_ioctl)
+-		retval = f.file->f_op->unlocked_ioctl(f.file, args.cmd,
++	else if (fd_file(f)->f_op->unlocked_ioctl)
++		retval = fd_file(f)->f_op->unlocked_ioctl(fd_file(f), args.cmd,
+ 						      args.arg);
+ #endif
+ 
+@@ -419,18 +419,18 @@
+ static struct fd my_fdget_pos(unsigned int fd)
+ {
+ 	struct fd f = fdget(fd);
+-	if (f.file && (f.file->f_mode & FMODE_ATOMIC_POS)) {
+-		if (file_count(f.file) > 1) {
+-			f.flags |= FDPUT_POS_UNLOCK;
+-			mutex_lock(&f.file->f_pos_lock);
++	if (fd_file(f) && (fd_file(f)->f_mode & FMODE_ATOMIC_POS)) {
++		if (file_count(fd_file(f)) > 1) {
++			f.word |= FDPUT_POS_UNLOCK;
++			mutex_lock(&fd_file(f)->f_pos_lock);
+ 		}
+ 	}
+ 	return f;
+ }
+ static void my_fdput_pos(struct fd fd)
+ {
+-	if (fd.flags & FDPUT_POS_UNLOCK)
+-		mutex_unlock(&fd.file->f_pos_lock);
++	if (fd.word & FDPUT_POS_UNLOCK)
++		mutex_unlock(&fd_file(fd)->f_pos_lock);
+ 	fdput(fd);
+ }
+ 
+@@ -446,7 +446,7 @@
+ 		return -EFAULT;
+ 
+ 	f = my_fdget_pos(args.fd);
+-	if (!f.file)
++	if (!fd_file(f))
+ 		return -EBADF;
+ 
+ 	/*
+@@ -458,7 +458,7 @@
+ 	buf.count = args.count;
+ 	buf.current_dir = (struct linux_dirent64 __user *)args.dirp;
+ 
+-	error = iterate_dir(f.file, &buf.ctx);
++	error = iterate_dir(fd_file(f), &buf.ctx);
+ 	if (error >= 0)
+ 		error = buf.error;
+ 	if (buf.prev_reclen) {
+@@ -488,7 +488,7 @@
+ 		return -EFAULT;
+ 
+ 	f = my_fdget_pos(args.fd);
+-	if (!f.file)
++	if (!fd_file(f))
+ 		return -EBADF;
+ 
+ 	/*
+@@ -500,7 +500,7 @@
+ 	if (args.whence > SEEK_MAX)
+ 		goto out_putf;
+ 
+-	offset = vfs_llseek(f.file, args.offset, args.whence);
++	offset = vfs_llseek(fd_file(f), args.offset, args.whence);
+ 
+ 	retval = (int)offset;
+ 	if (offset >= 0) {

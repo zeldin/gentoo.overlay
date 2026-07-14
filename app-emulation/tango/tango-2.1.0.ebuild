@@ -1,5 +1,5 @@
 EAPI=8
-inherit linux-mod
+inherit linux-mod-r1
 
 DESCRIPTION="Tango is a binary translation system for GNU/Linux and Android which allows unmodified 32-bit ARM programs to run on 64-bit only ARM processors"
 HOMEPAGE="https://www.amanieusystems.com/home"
@@ -14,13 +14,7 @@ QA_PREBUILT="usr/bin/tango*"
 
 S="${WORKDIR}/tango-v${PV}-integration-package"
 
-MODULE_NAMES="tango32(extra:${S}/kernel-module)"
-
-pkg_setup() {
-  linux-mod_pkg_setup
-  BUILD_TARGETS="clean modules"
-  BUILD_PARAMS="KERNEL_SRC=${KERNEL_DIR}"
-}
+PATCHES=( "${FILESDIR}"/fd_access.patch )
 
 src_configure() {
   for f in tango binfmt.conf; do
@@ -28,8 +22,17 @@ src_configure() {
   done
 }
 
+src_compile() {
+  MODULE_MAKEARGS+=(
+    KERNEL_SRC="${KV_OUT_DIR}"
+  )
+
+  emake -C kernel-module "${MODULE_MAKEARGS[@]}"
+}
+
 src_install() {
-  linux-mod_src_install
+  linux_domodule kernel-module/tango32.ko
+  modules_post_process  
   insinto /etc/modules-load.d
   newins - tango32.conf <<<"tango32"
   cd "${S}/linux/files"
