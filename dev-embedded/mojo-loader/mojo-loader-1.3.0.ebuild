@@ -11,13 +11,13 @@ SLOT="0"
 KEYWORDS="~arm64"
 
 RDEPEND="
-	>=virtual/jdk-1.7
-	dev-java/swt:4.6
+	>=virtual/jre-10:*
+	dev-java/swt:4.27
 	dev-java/jssc:0
 	virtual/udev"
 
 src_install() {
 	java-pkg_dojar lib/mojo-loader.jar
-	java-pkg_register-dependency swt-4.6,jssc
+	java-pkg_register-dependency swt-4.27,jssc
 	java-pkg_dolauncher ${PN} --main com.embeddedmicro.mojo.MainWindow
 }
